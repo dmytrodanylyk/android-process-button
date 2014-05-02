@@ -1,5 +1,5 @@
 ## Preview
 
-<img src="screenshots/sample 1.gif" width="240" />
-<img src="screenshots/sample 2.gif" width="240" />
-<img src="screenshots/sample 3.gif" width="240" />
+<img src="screenshots/sample1.gif" width="240" />
+<img src="screenshots/sample2.gif" width="240" />
+<img src="screenshots/sample3.gif" width="240" />
