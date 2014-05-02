@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+    package="com.dd.sample"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.Holo.Light">
+        <activity
+            android:name="com.dd.sample.SignInActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.Light">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.dd.sample.MessageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.Light" />
+
+        <activity
+            android:name="com.dd.sample.UploadActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.Light" />
+
+    </application>
+
+</manifest>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Process Button Sample</string>
+    <string name="action_settings">Settings</string>
+    <string name="dummy_email">jondoe@gmail.com</string>
+    <string name="dummy_password">123456789</string>
+    <string name="Sign_in">Sign in</string>
+    <string name="Success">Success</string>
+    <string name="Loading">Loading..</string>
+    <string name="Question">How are you?</string>
+    <string name="Send">Send</string>
+    <string name="Done">Done</string>
+    <string name="Upload">Upload</string>
+    <string name="Beautiful_Picture">Beautiful Picture</string>
+    <string name="Uploading">Uploading</string>
+
+</resources>

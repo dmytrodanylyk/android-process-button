@@ -1,0 +1,47 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_marginLeft="32dp"
+    android:layout_marginRight="32dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/editEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:inputType="textEmailAddress"
+            android:text="@string/dummy_email" />
+
+        <EditText
+            android:id="@+id/editPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:inputType="textPassword"
+            android:text="@string/dummy_password" />
+
+        <com.dd.processbutton.ProcessButton
+            android:id="@+id/btnSignIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/btn_blue_selector"
+            android:text="@string/Sign_in"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            custom:completeDrawable="@drawable/rect_green"
+            custom:completeText="@string/Success"
+            custom:progressDrawable="@drawable/rect_purple"
+            custom:progressStyle="action"
+            custom:progressText="@string/Loading" />
+
+    </LinearLayout>
+
+</RelativeLayout>

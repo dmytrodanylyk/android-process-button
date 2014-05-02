@@ -1,0 +1,32 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/editMessage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="16dp"
+        android:layout_weight="1.0"
+        android:inputType="textShortMessage"
+        android:text="@string/Question" />
+
+    <com.dd.processbutton.ProcessButton
+        android:id="@+id/btnSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_blue_selector"
+        android:minWidth="100dp"
+        android:text="@string/Send"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        custom:completeDrawable="@drawable/rect_green"
+        custom:completeText="@string/Done"
+        custom:progressDrawable="@drawable/rect_purple"
+        custom:progressStyle="submit"
+        custom:progressText="@string/Loading" />
+
+</LinearLayout>

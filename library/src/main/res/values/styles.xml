@@ -1,0 +1,13 @@
+<resources>
+    <declare-styleable name="ProcessButton">
+        <attr name="progressText" format="string" />
+        <attr name="completeText" format="string" />
+        <attr name="progressDrawable" format="integer" />
+        <attr name="completeDrawable" format="integer" />
+        <attr name="progressStyle" format="enum">
+            <enum name="submit" value="0" />
+            <enum name="action" value="1" />
+            <enum name="generate" value="2" />
+        </attr>
+    </declare-styleable>
+</resources>
