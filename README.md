@@ -1,16 +1,61 @@
-## Sample of usage
+## Sample
 
 ### Indicate sign in progress
 
 <img src="screenshots/sample1.gif" width="480" />
 
+===
 ### Indicate send message progress
 
 <img src="screenshots/sample2.gif" width="480" />
 
+===
 ### Indicate image upload progress
 
 <img src="screenshots/sample3.gif" width="480" />
+## Usage
+
+Declare button inside your layout
+
+```xml
+ <com.dd.processbutton.ProcessButton
+    android:id="@+id/btnSignIn"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/btn_blue_selector"
+    android:text="Sign in"
+    custom:completeDrawable="@drawable/rect_green"
+    custom:completeText="Success"
+    custom:progressDrawable="@drawable/rect_purple"
+    custom:progressText="Loading"
+    custom:progressStyle="action"/>
+            
+<!--drawable which will be displayed when loading is complete-->
+custom:completeDrawable="@drawable/rect_green"
+<!--text which will be displayed when loading is complete-->
+custom:completeText="Success"
+<!--drawable which will be displayed when loading is in progress-->
+custom:progressDrawable="@drawable/rect_purple"
+<!--text which will be displayed when loading is in progress-->
+custom:progressText="Loading"
+<!--progress indicator - action, submit, generate-->
+custom:progressStyle="action"
+```
+
+Control via Java code
+
+```java
+ProcessButton btnSignIn = (ProcessButton) findViewById(R.id.btnSignIn);
+
+// no progress
+button.setProgress(0);
+// progressDrawable cover 50% of button width, progressText is shown
+button.setProgress(50);
+// progressDrawable cover 75% of button width, progressText is shown
+button.setProgress(75);
+// completeDrawable & completeText is shown
+button.setProgress(100);
+```
 
 ## License
 
