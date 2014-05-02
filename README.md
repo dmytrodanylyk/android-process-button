@@ -1,7 +1,15 @@
-## Where to use?
+## Sample of usage
+
+### Indicate sign in progress
 
 <img src="screenshots/sample1.gif" width="480" />
+
+### Indicate send message progress
+
 <img src="screenshots/sample2.gif" width="480" />
+
+### Indicate image upload progress
+
 <img src="screenshots/sample3.gif" width="480" />
 
 ## License
