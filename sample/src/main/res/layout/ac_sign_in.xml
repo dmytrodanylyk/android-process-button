@@ -27,19 +27,19 @@
             android:inputType="textPassword"
             android:text="@string/dummy_password" />
 
-        <com.dd.processbutton.ProcessButton
+        <com.dd.processbutton.iml.ActionProcessButton
             android:id="@+id/btnSignIn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:background="@drawable/btn_blue_selector"
             android:text="@string/Sign_in"
             android:textColor="@android:color/white"
             android:textSize="18sp"
-            custom:completeDrawable="@drawable/rect_green"
+            custom:colorComplete="@color/green_complete"
+            custom:colorNormal="@color/blue_normal"
+            custom:colorPressed="@color/blue_pressed"
+            custom:colorProgress="@color/purple_progress"
             custom:completeText="@string/Success"
-            custom:progressDrawable="@drawable/rect_purple"
-            custom:progressStyle="action"
             custom:progressText="@string/Loading" />
 
     </LinearLayout>

@@ -1,6 +1,6 @@
 package com.dd.sample;
 
-import com.dd.processbutton.ProcessButton;
+import com.dd.processbutton.iml.ActionProcessButton;
 import com.dd.sample.utils.ProgressGenerator;
 
 import android.app.Activity;
@@ -21,7 +21,8 @@ public class SignInActivity extends Activity implements ProgressGenerator.OnComp
         final EditText editPassword = (EditText) findViewById(R.id.editPassword);
 
         final ProgressGenerator progressGenerator = new ProgressGenerator(this);
-        final ProcessButton btnSignIn = (ProcessButton) findViewById(R.id.btnSignIn);
+        final ActionProcessButton btnSignIn = (ActionProcessButton) findViewById(R.id.btnSignIn);
+        btnSignIn.setMode(ActionProcessButton.Mode.ENDLESS);
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

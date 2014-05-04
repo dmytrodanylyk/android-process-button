@@ -1,6 +1,6 @@
 package com.dd.sample;
 
-import com.dd.processbutton.ProcessButton;
+import com.dd.processbutton.iml.GenerateProcessButton;
 import com.dd.sample.utils.ProgressGenerator;
 
 import android.app.Activity;
@@ -16,7 +16,8 @@ public class UploadActivity extends Activity implements ProgressGenerator.OnComp
         setContentView(R.layout.ac_upload);
 
         final ProgressGenerator progressGenerator = new ProgressGenerator(this);
-        final ProcessButton btnUpload = (ProcessButton) findViewById(R.id.btnUpload);
+        final GenerateProcessButton btnUpload =
+                (GenerateProcessButton) findViewById(R.id.btnUpload);
         btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

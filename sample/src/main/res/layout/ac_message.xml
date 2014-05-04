@@ -14,19 +14,16 @@
         android:inputType="textShortMessage"
         android:text="@string/Question" />
 
-    <com.dd.processbutton.ProcessButton
+    <com.dd.processbutton.iml.SubmitProcessButton
         android:id="@+id/btnSend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/btn_blue_selector"
+        android:background="@drawable/btn_selector"
         android:minWidth="100dp"
         android:text="@string/Send"
         android:textColor="@android:color/white"
         android:textSize="18sp"
-        custom:completeDrawable="@drawable/rect_green"
         custom:completeText="@string/Done"
-        custom:progressDrawable="@drawable/rect_purple"
-        custom:progressStyle="submit"
         custom:progressText="@string/Loading" />
 
 </LinearLayout>

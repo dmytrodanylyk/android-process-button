@@ -1,6 +1,6 @@
 package com.dd.sample;
 
-import com.dd.processbutton.ProcessButton;
+import com.dd.processbutton.iml.SubmitProcessButton;
 import com.dd.sample.utils.ProgressGenerator;
 
 import android.app.Activity;
@@ -20,7 +20,7 @@ public class MessageActivity extends Activity implements ProgressGenerator.OnCom
         final EditText editMessage = (EditText) findViewById(R.id.editMessage);
 
         final ProgressGenerator progressGenerator = new ProgressGenerator(this);
-        final ProcessButton btnSend = (ProcessButton) findViewById(R.id.btnSend);
+        final SubmitProcessButton btnSend = (SubmitProcessButton) findViewById(R.id.btnSend);
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

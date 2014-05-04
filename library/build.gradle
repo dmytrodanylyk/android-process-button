@@ -15,3 +15,7 @@ android {
         versionName project.VERSION_NAME
     }
 }
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+}
