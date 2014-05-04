@@ -5,30 +5,25 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="160dp"
         android:layout_marginBottom="16dp"
+        android:background="#333333"
         android:gravity="center"
         android:text="@string/Beautiful_Picture"
-        android:background="#333333"
         android:textColor="@android:color/white"
         android:textSize="24sp" />
 
-
-    <com.dd.processbutton.ProcessButton
+    <com.dd.processbutton.iml.GenerateProcessButton
         android:id="@+id/btnUpload"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/btn_blue_selector"
+        android:background="@drawable/btn_selector"
         android:text="@string/Upload"
         android:textColor="@android:color/white"
         android:textSize="18sp"
-        custom:completeDrawable="@drawable/rect_green"
         custom:completeText="@string/Done"
-        custom:progressDrawable="@drawable/rect_purple"
-        custom:progressStyle="generate"
         custom:progressText="@string/Uploading" />
 
 </LinearLayout>
