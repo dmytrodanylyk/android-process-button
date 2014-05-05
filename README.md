@@ -2,13 +2,14 @@
 
 Custom android button which can indicate progress.
 
-Latest version **0.0.1**
+Latest version **0.0.2**
 
-![](screenshots/sample1_small.gif)
+![](screenshots/sample1_small1.gif)
+![](screenshots/sample1_small2.gif)
 
 Wiki
 
-- [Home] 
+- [Home]
 - [Screenshots]
 - [User Guide]
 
