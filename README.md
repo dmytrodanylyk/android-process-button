@@ -16,7 +16,6 @@ Wiki
 TODO
 
 - [ ] Implement save instance state
-- [ ] Add possibility to use [SmoothProgressBar]
 
 ## License
 
