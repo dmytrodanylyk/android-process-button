@@ -14,5 +14,13 @@
     <string name="Upload">Upload</string>
     <string name="Beautiful_Picture">Beautiful Picture</string>
     <string name="Uploading">Uploading</string>
+    <string name="Loading_Complete">Loading Complete, button is disabled</string>
+
+    <array name="sample_list">
+        <item>Action Button Progress sample</item>
+        <item>Action Button Endless Progress sample</item>
+        <item>Submit Button Progress sample</item>
+        <item>Generate Button Progress sample</item>
+    </array>
 
 </resources>

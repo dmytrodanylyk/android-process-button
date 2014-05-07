@@ -23,10 +23,17 @@ android {
         versionName project.VERSION_NAME
     }
 
+    signingConfigs {
+        release
+    }
+
     buildTypes {
+        debug {
+        }
+
         release {
-            runProguard false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig project.hasProperty('storeFile') ? signingConfigs.release :
+                    signingConfigs.debug
         }
     }
 }
@@ -34,4 +41,17 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':library')
+}
+
+if (project.hasProperty('storeFile')) {
+    android.signingConfigs.release.storeFile = file(storeFile)
+}
+if (project.hasProperty('keyAlias')) {
+    android.signingConfigs.release.keyAlias = keyAlias
+}
+if (project.hasProperty('storePassword')) {
+    android.signingConfigs.release.storePassword = storePassword
+}
+if (project.hasProperty('keyPassword')) {
+    android.signingConfigs.release.keyPassword = keyPassword
 }

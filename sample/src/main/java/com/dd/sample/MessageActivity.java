@@ -4,10 +4,10 @@ import com.dd.processbutton.iml.SubmitProcessButton;
 import com.dd.sample.utils.ProgressGenerator;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class MessageActivity extends Activity implements ProgressGenerator.OnCompleteListener {
@@ -33,11 +33,7 @@ public class MessageActivity extends Activity implements ProgressGenerator.OnCom
 
     @Override
     public void onComplete() {
-        startUploadActivity();
+        Toast.makeText(this, R.string.Loading_Complete, Toast.LENGTH_LONG).show();
     }
 
-    private void startUploadActivity() {
-        Intent intent = new Intent(this, UploadActivity.class);
-        startActivity(intent);
-    }
 }

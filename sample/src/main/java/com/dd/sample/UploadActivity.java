@@ -6,6 +6,7 @@ import com.dd.sample.utils.ProgressGenerator;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 
 public class UploadActivity extends Activity implements ProgressGenerator.OnCompleteListener {
@@ -29,6 +30,6 @@ public class UploadActivity extends Activity implements ProgressGenerator.OnComp
 
     @Override
     public void onComplete() {
-
+        Toast.makeText(this, R.string.Loading_Complete, Toast.LENGTH_LONG).show();
     }
 }
