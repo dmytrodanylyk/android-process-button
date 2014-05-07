@@ -13,9 +13,18 @@ Wiki
 - [Screenshots]
 - [User Guide]
 
-TODO
+### Integration
 
-- [ ] Implement save instance state
+The lib **soon will be available** on Maven Central.
+
+```
+dependencies {
+    // of course, do not write x.x.x but the version number
+    compile 'com.github.castorflex.smoothprogressbar:library:x.x.x'
+}
+```
+
+You can find the last version on [Gradle Please]
 
 ## License
 
@@ -47,3 +56,4 @@ SOFTWARE.
 [Home]:https://github.com/dmytrodanylyk/android-process-buton/wiki
 [Screenshots]:https://github.com/dmytrodanylyk/android-process-buton/wiki/Screenshots
 [User Guide]:https://github.com/dmytrodanylyk/android-process-buton/wiki/User-Guide
+[Gradle Please]:http://gradleplease.appspot.com/
