@@ -24,10 +24,10 @@ public class MainActivity extends ListActivity {
     protected void onListItemClick(ListView l, View v, int position, long id) {
         switch (position) {
             case 0:
-                startSignInActivity(true);
+                startSignInActivity(false);
                 break;
             case 1:
-                startSignInActivity(false);
+                startSignInActivity(true);
                 break;
             case 2:
                 startMessageActivity();

@@ -3,6 +3,8 @@ package com.dd.processbutton;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.GradientDrawable;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.AttributeSet;
 
 public abstract class ProcessButton extends FlatButton {
@@ -11,7 +13,7 @@ public abstract class ProcessButton extends FlatButton {
     private int mMaxProgress;
     private int mMinProgress;
 
-    private boolean isLoadingComplete;
+    private boolean mIsLoadingComplete;
 
     private GradientDrawable mProgressDrawable;
     private GradientDrawable mCompleteDrawable;
@@ -57,11 +59,11 @@ public abstract class ProcessButton extends FlatButton {
             mLoadingText = attr.getString(R.styleable.ProcessButton_progressText);
             mCompleteText = attr.getString(R.styleable.ProcessButton_completeText);
 
-            if(attr.hasValue(R.styleable.ProcessButton_colorProgress)) {
+            if (attr.hasValue(R.styleable.ProcessButton_colorProgress)) {
                 mProgressDrawable.setColor(getColor(attr, R.styleable.ProcessButton_colorProgress));
             }
 
-            if(attr.hasValue(R.styleable.ProcessButton_colorComplete)) {
+            if (attr.hasValue(R.styleable.ProcessButton_colorComplete)) {
                 mCompleteDrawable.setColor(getColor(attr, R.styleable.ProcessButton_colorComplete));
             }
 
@@ -75,13 +77,13 @@ public abstract class ProcessButton extends FlatButton {
 
         if (progress < mMinProgress) {
             mProgress = mMinProgress;
-            isLoadingComplete = false;
-        } else if (progress > mMaxProgress) {
+            mIsLoadingComplete = false;
+        } else if (progress >= mMaxProgress) {
             mProgress = mMaxProgress;
-            isLoadingComplete = true;
+            mIsLoadingComplete = true;
         } else {
             mProgress = progress;
-            isLoadingComplete = false;
+            mIsLoadingComplete = false;
         }
 
         invalidate();
@@ -110,7 +112,7 @@ public abstract class ProcessButton extends FlatButton {
     }
 
     public boolean isLoadingComplete() {
-        return isLoadingComplete;
+        return mIsLoadingComplete;
     }
 
     public GradientDrawable getProgressDrawable() {
@@ -143,5 +145,64 @@ public abstract class ProcessButton extends FlatButton {
 
     public void setCompleteText(CharSequence completeText) {
         mCompleteText = completeText;
+    }
+
+
+    @Override
+    public Parcelable onSaveInstanceState() {
+        Parcelable superState = super.onSaveInstanceState();
+        SavedState savedState = new SavedState(superState);
+        savedState.mProgress = mProgress;
+
+        return savedState;
+    }
+
+    @Override
+    public void onRestoreInstanceState(Parcelable state) {
+        if (state instanceof SavedState) {
+            SavedState savedState = (SavedState) state;
+            mProgress = savedState.mProgress;
+            super.onRestoreInstanceState(savedState.getSuperState());
+            setProgress(mProgress);
+        } else {
+            super.onRestoreInstanceState(state);
+        }
+    }
+
+    /**
+     * A {@link android.os.Parcelable} representing the {@link com.dd.processbutton.ProcessButton}'s
+     * state.
+     */
+    public static class SavedState extends BaseSavedState {
+
+        private int mProgress;
+
+        public SavedState(Parcelable parcel) {
+            super(parcel);
+        }
+
+        private SavedState(Parcel in) {
+            super(in);
+            mProgress = in.readInt();
+        }
+
+        @Override
+        public void writeToParcel(Parcel out, int flags) {
+            super.writeToParcel(out, flags);
+            out.writeInt(mProgress);
+        }
+
+        public static final Creator<SavedState> CREATOR = new Creator<SavedState>() {
+
+            @Override
+            public SavedState createFromParcel(Parcel in) {
+                return new SavedState(in);
+            }
+
+            @Override
+            public SavedState[] newArray(int size) {
+                return new SavedState[size];
+            }
+        };
     }
 }
