@@ -19,8 +19,8 @@ The lib **soon will be available** on Maven Central.
 
 ```
 dependencies {
-    // of course, do not write x.x.x but the version number
-    compile 'com.github.castorflex.smoothprogressbar:library:x.x.x'
+    // replace x.x.x with version number
+    compile 'com.github.dmytrodanylyk.android-process-buton:library:x.x.x'
 }
 ```
 
