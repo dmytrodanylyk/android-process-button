@@ -24,7 +24,20 @@ dependencies {
 }
 ```
 
-You can find the last version on [Gradle Please]
+Currently you need to import library module to your project or use snapshot.
+
+```
+repositories {
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        mavenCentral()
+}
+```
+
+```
+dependencies {
+    compile 'com.github.dmytrodanylyk.android-process-buton:library:0.0.2-SNAPSHOT'
+}
+```
 
 ## License
 
