@@ -7,7 +7,7 @@ Latest version **0.0.2**
 ![](screenshots/sample1_small1.gif)
 ![](screenshots/sample1_small2.gif)
 
-Wiki
+## Wiki
 
 - [Home]
 - [Screenshots]
