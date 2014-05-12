@@ -15,29 +15,14 @@ Latest version **0.0.2**
 
 ### Integration
 
-The lib **soon will be available** on Maven Central.
+The lib is available on Maven Central.
 
 ```
 dependencies {
-    // replace x.x.x with version number
-    compile 'com.github.dmytrodanylyk.android-process-buton:library:x.x.x'
+    compile 'com.github.dmytrodanylyk.android-process-buton:library:0.0.2'
 }
 ```
 
-Currently you need to import library module to your project or use snapshot.
-
-```
-repositories {
-        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
-        mavenCentral()
-}
-```
-
-```
-dependencies {
-    compile 'com.github.dmytrodanylyk.android-process-buton:library:0.0.2-SNAPSHOT'
-}
-```
 
 ## License
 
