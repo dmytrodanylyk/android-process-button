@@ -7,7 +7,7 @@ Latest version **0.0.2**
 ![](screenshots/sample1_small1.gif)
 ![](screenshots/sample1_small2.gif)
 
-Wiki
+## Wiki
 
 - [Home]
 - [Screenshots]
@@ -15,16 +15,14 @@ Wiki
 
 ### Integration
 
-The lib **soon will be available** on Maven Central.
+The lib is available on Maven Central.
 
 ```
 dependencies {
-    // replace x.x.x with version number
-    compile 'com.github.dmytrodanylyk.android-process-buton:library:x.x.x'
+    compile 'com.github.dmytrodanylyk.android-process-buton:library:0.0.2'
 }
 ```
 
-You can find the last version on [Gradle Please]
 
 ## License
 
