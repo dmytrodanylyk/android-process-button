@@ -40,8 +40,10 @@ public abstract class ProcessButton extends FlatButton {
         mMinProgress = 0;
         mMaxProgress = 100;
 
-        mProgressDrawable = getGradientDrawable(R.drawable.rect_progress);
-        mCompleteDrawable = getGradientDrawable(R.drawable.rect_complete);
+        mProgressDrawable =
+                (GradientDrawable) getGradientDrawable(R.drawable.rect_progress).mutate();
+        mCompleteDrawable =
+                (GradientDrawable) getGradientDrawable(R.drawable.rect_complete).mutate();
 
         if (attrs != null) {
             initAttributes(context, attrs);
