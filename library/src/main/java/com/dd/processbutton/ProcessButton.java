@@ -13,8 +13,6 @@ public abstract class ProcessButton extends FlatButton {
     private int mMaxProgress;
     private int mMinProgress;
 
-    private boolean mIsLoadingComplete;
-
     private GradientDrawable mProgressDrawable;
     private GradientDrawable mCompleteDrawable;
 
@@ -40,12 +38,10 @@ public abstract class ProcessButton extends FlatButton {
         mMinProgress = 0;
         mMaxProgress = 100;
 
-        mProgressDrawable =
-                (GradientDrawable) getDrawable(R.drawable.rect_progress).mutate();
+        mProgressDrawable = (GradientDrawable) getDrawable(R.drawable.rect_progress).mutate();
         mProgressDrawable.setCornerRadius(getCornerRadius());
 
-        mCompleteDrawable =
-                (GradientDrawable) getDrawable(R.drawable.rect_complete).mutate();
+        mCompleteDrawable = (GradientDrawable) getDrawable(R.drawable.rect_complete).mutate();
         mCompleteDrawable.setCornerRadius(getCornerRadius());
 
         if (attrs != null) {
@@ -64,13 +60,13 @@ public abstract class ProcessButton extends FlatButton {
             mLoadingText = attr.getString(R.styleable.ProcessButton_textProgress);
             mCompleteText = attr.getString(R.styleable.ProcessButton_textComplete);
 
-            if (attr.hasValue(R.styleable.ProcessButton_colorProgress)) {
-                mProgressDrawable.setColor(getColor(attr, R.styleable.ProcessButton_colorProgress));
-            }
+            int purple = getColor(R.color.purple_progress);
+            int colorProgress = attr.getColor(R.styleable.ProcessButton_colorProgress, purple);
+            mProgressDrawable.setColor(colorProgress);
 
-            if (attr.hasValue(R.styleable.ProcessButton_colorComplete)) {
-                mCompleteDrawable.setColor(getColor(attr, R.styleable.ProcessButton_colorComplete));
-            }
+            int green = getColor(R.color.green_complete);
+            int colorComplete = attr.getColor(R.styleable.ProcessButton_colorComplete, green);
+            mCompleteDrawable.setColor(colorComplete);
 
         } finally {
             attr.recycle();
@@ -82,13 +78,10 @@ public abstract class ProcessButton extends FlatButton {
 
         if (progress < mMinProgress) {
             mProgress = mMinProgress;
-            mIsLoadingComplete = false;
         } else if (progress >= mMaxProgress) {
             mProgress = mMaxProgress;
-            mIsLoadingComplete = true;
         } else {
             mProgress = progress;
-            mIsLoadingComplete = false;
         }
 
         invalidate();
@@ -114,10 +107,6 @@ public abstract class ProcessButton extends FlatButton {
 
     public int getMinProgress() {
         return mMinProgress;
-    }
-
-    public boolean isLoadingComplete() {
-        return mIsLoadingComplete;
     }
 
     public GradientDrawable getProgressDrawable() {

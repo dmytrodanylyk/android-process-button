@@ -93,7 +93,7 @@ public class ActionProcessButton extends ProcessButton {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        if (isLoadingComplete()) {
+        if (getProgress() >= getMaxProgress()) {
             onLoadingComplete();
         } else {
             switch (mMode) {

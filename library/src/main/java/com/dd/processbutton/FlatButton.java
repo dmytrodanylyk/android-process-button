@@ -65,8 +65,8 @@ public class FlatButton extends Button {
                 (GradientDrawable) drawableNormal.getDrawable(0).mutate();
         drawableTop.setCornerRadius(getCornerRadius());
 
-        int bluePressed = getColor(R.color.blue_pressed);
-        int colorPressed = attr.getColor(R.styleable.FlatButton_colorPressed, bluePressed);
+        int blueDark = getColor(R.color.blue_pressed);
+        int colorPressed = attr.getColor(R.styleable.FlatButton_colorPressed, blueDark);
         drawableTop.setColor(colorPressed);
 
         GradientDrawable drawableBottom =
@@ -84,8 +84,8 @@ public class FlatButton extends Button {
                 (GradientDrawable) getDrawable(R.drawable.rect_pressed).mutate();
         drawablePressed.setCornerRadius(getCornerRadius());
 
-        int bluePressed = getColor(R.color.blue_pressed);
-        int colorPressed = attr.getColor(R.styleable.FlatButton_colorPressed, bluePressed);
+        int blueDark = getColor(R.color.blue_pressed);
+        int colorPressed = attr.getColor(R.styleable.FlatButton_colorPressed, blueDark);
         drawablePressed.setColor(colorPressed);
 
         return drawablePressed;
@@ -98,16 +98,13 @@ public class FlatButton extends Button {
     protected Drawable getDrawable(int id) {
         return getResources().getDrawable(id);
     }
+
     protected float getDimension(int id) {
         return getResources().getDimension(id);
     }
 
     protected int getColor(int id) {
         return getResources().getColor(id);
-    }
-
-    protected int getColor(TypedArray attr, int index) {
-        return attr.getColor(index, 0);
     }
 
     protected TypedArray getTypedArray(Context context, AttributeSet attributeSet, int[] attr) {
