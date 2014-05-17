@@ -41,11 +41,11 @@ public abstract class ProcessButton extends FlatButton {
         mMaxProgress = 100;
 
         mProgressDrawable =
-                (GradientDrawable) getGradientDrawable(R.drawable.rect_progress).mutate();
+                (GradientDrawable) getDrawable(R.drawable.rect_progress).mutate();
         mProgressDrawable.setCornerRadius(getCornerRadius());
 
         mCompleteDrawable =
-                (GradientDrawable) getGradientDrawable(R.drawable.rect_complete).mutate();
+                (GradientDrawable) getDrawable(R.drawable.rect_complete).mutate();
         mCompleteDrawable.setCornerRadius(getCornerRadius());
 
         if (attrs != null) {

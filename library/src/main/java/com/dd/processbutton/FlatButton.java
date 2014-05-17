@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.StateListDrawable;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.Button;
 
@@ -35,11 +34,7 @@ public class FlatButton extends Button {
             initAttributes(context, attrs, states);
         }
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            setBackground(states);
-        } else {
-            setBackgroundDrawable(states);
-        }
+        setBackgroundDrawable(states);
 
     }
 
@@ -51,54 +46,64 @@ public class FlatButton extends Button {
 
         try {
 
-            float defValue = getResources().getDimension(R.dimen.corner_radius);
+            float defValue = getDimension(R.dimen.corner_radius);
             cornerRadius = attr.getDimension(R.styleable.FlatButton_cornerRadius, defValue);
 
-            GradientDrawable drawablePressed =
-                    (GradientDrawable) getGradientDrawable(R.drawable.rect_pressed).mutate();
-            drawablePressed.setCornerRadius(getCornerRadius());
-
-            if(attr.hasValue(R.styleable.FlatButton_colorPressed)) {
-                drawablePressed.setColor(getColor(attr, R.styleable.FlatButton_colorPressed));
-            }
-
-            LayerDrawable drawableNormal =
-                    (LayerDrawable) getDrawable(R.drawable.rect_normal).mutate();;
-
-            GradientDrawable drawableTop =
-                    (GradientDrawable) drawableNormal.getDrawable(0).mutate();;
-            drawableTop.setCornerRadius(getCornerRadius());
-
-            GradientDrawable drawableBottom =
-                    (GradientDrawable) drawableNormal.getDrawable(1).mutate();;
-            drawableBottom.setCornerRadius(getCornerRadius());
-
-            if(attr.hasValue(R.styleable.FlatButton_colorNormal)) {
-                drawableBottom.setColor(getColor(attr, R.styleable.FlatButton_colorNormal));
-            }
-
-            if(attr.hasValue(R.styleable.FlatButton_colorPressed)) {
-                drawableTop.setColor(getColor(attr, R.styleable.FlatButton_colorPressed));
-            }
-
-            states.addState(new int[] {android.R.attr.state_pressed}, drawablePressed);
-            states.addState(new int[] { }, drawableNormal);
+            states.addState(new int[] {android.R.attr.state_pressed}, createPressedDrawable(attr));
+            states.addState(new int[] { }, createNormalDrawable(attr));
 
         } finally {
             attr.recycle();
         }
     }
 
+    private LayerDrawable createNormalDrawable(TypedArray attr) {
+        LayerDrawable drawableNormal =
+                (LayerDrawable) getDrawable(R.drawable.rect_normal).mutate();
+
+        GradientDrawable drawableTop =
+                (GradientDrawable) drawableNormal.getDrawable(0).mutate();
+        drawableTop.setCornerRadius(getCornerRadius());
+
+        int bluePressed = getColor(R.color.blue_pressed);
+        int colorPressed = attr.getColor(R.styleable.FlatButton_colorPressed, bluePressed);
+        drawableTop.setColor(colorPressed);
+
+        GradientDrawable drawableBottom =
+                (GradientDrawable) drawableNormal.getDrawable(1).mutate();
+        drawableBottom.setCornerRadius(getCornerRadius());
+
+        int blueNormal = getColor(R.color.blue_normal);
+        int colorNormal = attr.getColor(R.styleable.FlatButton_colorNormal, blueNormal);
+        drawableBottom.setColor(colorNormal);
+        return drawableNormal;
+    }
+
+    private Drawable createPressedDrawable(TypedArray attr) {
+        GradientDrawable drawablePressed =
+                (GradientDrawable) getDrawable(R.drawable.rect_pressed).mutate();
+        drawablePressed.setCornerRadius(getCornerRadius());
+
+        int bluePressed = getColor(R.color.blue_pressed);
+        int colorPressed = attr.getColor(R.styleable.FlatButton_colorPressed, bluePressed);
+        drawablePressed.setColor(colorPressed);
+
+        return drawablePressed;
+    }
+
     public float getCornerRadius() {
         return cornerRadius;
     }
 
-    protected GradientDrawable getGradientDrawable(int id) {
-        return (GradientDrawable) getDrawable(id);
-    }
-
     protected Drawable getDrawable(int id) {
         return getResources().getDrawable(id);
+    }
+    protected float getDimension(int id) {
+        return getResources().getDimension(id);
+    }
+
+    protected int getColor(int id) {
+        return getResources().getColor(id);
     }
 
     protected int getColor(TypedArray attr, int index) {
