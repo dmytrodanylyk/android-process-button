@@ -8,6 +8,7 @@
     <string name="Sign_in">Sign in</string>
     <string name="Success">Success</string>
     <string name="Loading">Loading..</string>
+    <string name="Error">Retry</string>
     <string name="Question">How are you?</string>
     <string name="Send">Send</string>
     <string name="Done">Done</string>

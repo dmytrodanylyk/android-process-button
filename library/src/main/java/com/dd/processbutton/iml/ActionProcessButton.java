@@ -1,19 +1,20 @@
 package com.dd.processbutton.iml;
 
-import com.dd.processbutton.ProcessButton;
-
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.drawable.GradientDrawable;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
+
+import com.dd.processbutton.ProcessButton;
 
 /*
  *    The MIT License (MIT)
@@ -91,11 +92,17 @@ public class ActionProcessButton extends ProcessButton {
         mColor4 = color4;
     }
 
+    /**
+     * Will set the button to {@link Mode#ENDLESS} and start animating.
+     */
+    public void startIndeterminately() {
+        setMode(Mode.ENDLESS);
+        setProgress(1);
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
-        if (isLoadingComplete()) {
-            onLoadingComplete();
-        } else {
+        if (isInProgress()) {
             switch (mMode) {
                 case ENDLESS:
                     drawEndlessProgress(canvas);
@@ -110,22 +117,29 @@ public class ActionProcessButton extends ProcessButton {
     }
 
     private void drawProgress(Canvas canvas) {
-        float scale = (float) getProgress() / (float) getMaxProgress();
-        float indicatorWidth = (float) getMeasuredWidth() * scale;
+        GradientDrawable progressDrawable = getProgressDrawable();
+        int measuredHeight = getMeasuredHeight();
+        int measuredWidth = getMeasuredWidth();
+        float percentage = (float) getProgress() / (float) getMaxProgress();
+        float indicatorWidth = (float) measuredWidth * percentage;
 
         double indicatorHeightPercent = 0.05; // 5%
-        int bottom = (int) (getMeasuredHeight() - getMeasuredHeight() * indicatorHeightPercent);
-        getProgressDrawable().setBounds(0, bottom, (int) indicatorWidth, getMeasuredHeight());
-        getProgressDrawable().draw(canvas);
+        int bottom = (int) (measuredHeight - (measuredHeight * indicatorHeightPercent));
+        progressDrawable.setBounds(0, bottom, (int) indicatorWidth,
+                measuredHeight);
+        progressDrawable.draw(canvas);
     }
 
     private void drawEndlessProgress(Canvas canvas) {
         double indicatorHeightPercent = 0.05; // 5%
-        int bottom = (int) (getMeasuredHeight() - getMeasuredHeight() * indicatorHeightPercent);
+        int measuredWidth = getMeasuredWidth();
+        int measuredHeight = getMeasuredHeight();
+
+        int bottom = (int) (measuredHeight - (measuredHeight * indicatorHeightPercent));
 
         if (mProgressBar == null) {
             mProgressBar = new ProgressBar(this);
-            mProgressBar.setBounds(0, bottom, getMeasuredWidth(), getMeasuredHeight());
+            mProgressBar.setBounds(0, bottom, measuredWidth, measuredHeight);
             mProgressBar.setColorScheme(mColor1, mColor2, mColor3, mColor4);
             mProgressBar.start();
         }
@@ -177,10 +191,10 @@ public class ActionProcessButton extends ProcessButton {
         }
 
         /**
-         * Set the four colors used in the progress animation. The first color will
-         * also be the color of the bar that grows in response to a user swipe
-         * gesture.
-         *
+         * Set the four colors used in the progress animation. The first color
+         * will also be the color of the bar that grows in response to a user
+         * swipe gesture.
+         * 
          * @param color1 Integer representation of a color.
          * @param color2 Integer representation of a color.
          * @param color3 Integer representation of a color.
@@ -220,8 +234,8 @@ public class ActionProcessButton extends ProcessButton {
                 long iterations = (now - mStartTime) / ANIMATION_DURATION_MS;
                 float rawProgress = (elapsed / (ANIMATION_DURATION_MS / 100f));
 
-                // If we're not running anymore, that means we're running through
-                // the finish animation.
+                // If we're not running anymore, that means we're running
+                // through the finish animation.
                 if (!mRunning) {
                     // If the finish animation is done, don't draw anything, and
                     // don't repost.
@@ -230,24 +244,27 @@ public class ActionProcessButton extends ProcessButton {
                         return;
                     }
 
-                    // Otherwise, use a 0 opacity alpha layer to clear the animation
-                    // from the inside out. This layer will prevent the circles from
-                    // drawing within its bounds.
-                    long finishElapsed = (now - mFinishTime) % FINISH_ANIMATION_DURATION_MS;
+                    // Otherwise, use a 0 opacity alpha layer to clear the
+                    // animation from the inside out. This layer will prevent
+                    // the circles from drawing within its bounds.
+                    long finishElapsed = (now - mFinishTime)
+                            % FINISH_ANIMATION_DURATION_MS;
                     float finishProgress = (finishElapsed / (FINISH_ANIMATION_DURATION_MS / 100f));
                     float pct = (finishProgress / 100f);
                     // Radius of the circle is half of the screen.
-                    float clearRadius = width / 2 * INTERPOLATOR.getInterpolation(pct);
+                    float clearRadius = width / 2
+                            * INTERPOLATOR.getInterpolation(pct);
                     mClipRect.set(cx - clearRadius, 0, cx + clearRadius, height);
                     canvas.saveLayerAlpha(mClipRect, 0, 0);
-                    // Only draw the trigger if there is a space in the center of
-                    // this refreshing view that needs to be filled in by the
-                    // trigger. If the progress view is just still animating, let it
-                    // continue animating.
+                    // Only draw the trigger if there is a space in the center
+                    // of this refreshing view that needs to be filled in by the
+                    // trigger. If the progress view is just still animating,
+                    // let it continue animating.
                     drawTriggerWhileFinishing = true;
                 }
 
-                // First fill in with the last color that would have finished drawing.
+                // First fill in with the last color that would have finished
+                // drawing.
                 if (iterations == 0) {
                     canvas.drawColor(mColor1);
                 } else {
@@ -262,8 +279,8 @@ public class ActionProcessButton extends ProcessButton {
                     }
                 }
 
-                // Then draw up to 4 overlapping concentric circles of varying radii, based on how far
-                // along we are in the cycle.
+                // Then draw up to 4 overlapping concentric circles of varying
+                // radii, based on how far along we are in the cycle.
                 // progress 0-50 draw mColor2
                 // progress 25-75 draw mColor3
                 // progress 50-100 draw mColor4
@@ -289,10 +306,11 @@ public class ActionProcessButton extends ProcessButton {
                     drawCircle(canvas, cx, cy, mColor1, pct);
                 }
                 if (mTriggerPercentage > 0 && drawTriggerWhileFinishing) {
-                    // There is some portion of trigger to draw. Restore the canvas,
-                    // then draw the trigger. Otherwise, the trigger does not appear
-                    // until after the bar has finished animating and appears to
-                    // just jump in at a larger width than expected.
+                    // There is some portion of trigger to draw. Restore the
+                    // canvas, then draw the trigger. Otherwise, the trigger
+                    // does not appear until after the bar has finished
+                    // animating and appears to just jump in at a larger width
+                    // than expected.
                     canvas.restoreToCount(restoreCount);
                     restoreCount = canvas.save();
                     canvas.clipRect(mBounds);
@@ -316,14 +334,15 @@ public class ActionProcessButton extends ProcessButton {
 
         /**
          * Draws a circle centered in the view.
-         *
+         * 
          * @param canvas the canvas to draw on
          * @param cx the center x coordinate
          * @param cy the center y coordinate
          * @param color the color to draw
          * @param pct the percentage of the view that the circle should cover
          */
-        private void drawCircle(Canvas canvas, float cx, float cy, int color, float pct) {
+        private void drawCircle(Canvas canvas, float cx, float cy, int color,
+                                float pct) {
             mPaint.setColor(color);
             canvas.save();
             canvas.translate(cx, cy);

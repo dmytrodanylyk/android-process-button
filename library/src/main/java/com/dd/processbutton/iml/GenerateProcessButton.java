@@ -1,10 +1,10 @@
 package com.dd.processbutton.iml;
 
-import com.dd.processbutton.ProcessButton;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
+
+import com.dd.processbutton.ProcessButton;
 
 /*
  *    The MIT License (MIT)
@@ -40,15 +40,14 @@ public class GenerateProcessButton extends ProcessButton {
         super(context, attrs);
     }
 
-    public GenerateProcessButton(Context context, AttributeSet attrs, int defStyle) {
+    public GenerateProcessButton(Context context, AttributeSet attrs,
+            int defStyle) {
         super(context, attrs, defStyle);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        if (isLoadingComplete()) {
-            onLoadingComplete();
-        } else {
+        if (isInProgress()) {
             drawProgress(canvas);
         }
 
@@ -59,7 +58,8 @@ public class GenerateProcessButton extends ProcessButton {
         float scale = (float) getProgress() / (float) getMaxProgress();
         float indicatorHeight = (float) getMeasuredHeight() * scale;
 
-        getProgressDrawable().setBounds(0, 0, getMeasuredWidth(), (int) indicatorHeight);
+        getProgressDrawable().setBounds(0, 0, getMeasuredWidth(),
+                (int) indicatorHeight);
         getProgressDrawable().draw(canvas);
     }
 
