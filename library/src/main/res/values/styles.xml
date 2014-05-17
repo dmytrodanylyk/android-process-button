@@ -2,8 +2,10 @@
     <declare-styleable name="ProcessButton">
         <attr name="progressText" format="string" />
         <attr name="completeText" format="string" />
+        <attr name="errorText" format="string" />
         <attr name="colorProgress" format="color" />
         <attr name="colorComplete" format="color" />
+        <attr name="errorDrawable" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="FlatButton">

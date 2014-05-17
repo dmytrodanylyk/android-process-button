@@ -1,42 +1,58 @@
 package com.dd.sample.utils;
 
-import com.dd.processbutton.ProcessButton;
+import java.util.Random;
 
 import android.os.Handler;
 
-import java.util.Random;
+import com.dd.processbutton.ProcessButton;
 
 public class ProgressGenerator {
 
-    public interface OnCompleteListener {
+    private Random random = new Random();
 
+    public interface OnCompleteListener {
         public void onComplete();
     }
 
-    private OnCompleteListener mListener;
-    private int mProgress;
-
-    public ProgressGenerator(OnCompleteListener listener) {
-        mListener = listener;
+    public interface OnFailureListener {
+        public void onFailure();
     }
 
-    public void start(final ProcessButton button) {
+    private OnCompleteListener mCompletionListener;
+    private OnFailureListener mFailureListener;
+    private int mProgress;
+
+    public ProgressGenerator(OnCompleteListener completionListener,
+            OnFailureListener failureListener) {
+        mCompletionListener = completionListener;
+        mFailureListener = failureListener;
+    }
+
+    public void start(final ProcessButton button, final boolean canFail) {
+        mProgress = 0;
+
         final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
+        handler.post(new Runnable() {
             @Override
             public void run() {
                 mProgress += 10;
+                if (canFail && (random.nextInt() % 3 == 0)) {
+                    button.setErrorState();
+                    if (mFailureListener != null) {
+                        mFailureListener.onFailure();
+                    }
+                    return;
+                }
+
                 button.setProgress(mProgress);
-                if (mProgress <= 110) {
+                if (mProgress <= button.getMaxProgress()) {
                     handler.postDelayed(this, generateDelay());
                 } else {
-                    mListener.onComplete();
+                    mCompletionListener.onComplete();
                 }
             }
-        }, generateDelay());
+        });
     }
-
-    private Random random = new Random();
 
     private int generateDelay() {
         return random.nextInt(1000);

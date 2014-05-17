@@ -40,7 +40,8 @@
             custom:colorPressed="@color/blue_pressed"
             custom:colorProgress="@color/purple_progress"
             custom:completeText="@string/Success"
-            custom:progressText="@string/Loading" />
+            custom:progressText="@string/Loading"
+            custom:errorText="@string/Error" />
 
     </LinearLayout>
 

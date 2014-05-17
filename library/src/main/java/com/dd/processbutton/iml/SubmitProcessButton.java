@@ -1,10 +1,10 @@
 package com.dd.processbutton.iml;
 
-import com.dd.processbutton.ProcessButton;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
+
+import com.dd.processbutton.ProcessButton;
 
 /*
  *    The MIT License (MIT)
@@ -46,9 +46,7 @@ public class SubmitProcessButton extends ProcessButton {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        if (isLoadingComplete()) {
-            onLoadingComplete();
-        } else {
+        if (isInProgress()) {
             drawProgress(canvas);
         }
 
@@ -59,7 +57,8 @@ public class SubmitProcessButton extends ProcessButton {
         float scale = (float) getProgress() / (float) getMaxProgress();
         float indicatorWidth = (float) getMeasuredWidth() * scale;
 
-        getProgressDrawable().setBounds(0, 0, (int) indicatorWidth, getMeasuredHeight());
+        getProgressDrawable().setBounds(0, 0, (int) indicatorWidth,
+                getMeasuredHeight());
         getProgressDrawable().draw(canvas);
     }
 

@@ -1,5 +1,6 @@
 package com.dd.processbutton;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
@@ -32,47 +33,62 @@ public class FlatButton extends Button {
         if (attrs != null) {
             initAttributes(context, attrs, states);
         }
-
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            setBackground(states);
-        } else {
-            setBackgroundDrawable(states);
-        }
-
+        setBackgroundCompat(states);
     }
 
-    private void initAttributes(Context context, AttributeSet attributeSet, StateListDrawable states) {
-        TypedArray attr = getTypedArray(context, attributeSet, R.styleable.FlatButton);
-        if(attr == null) {
+    /**
+     * Set the View's background. Masks the API changes made in Jelly Bean.
+     * 
+     * @param bg
+     */
+    @SuppressWarnings("deprecation")
+    @SuppressLint("NewApi")
+    public void setBackgroundCompat(Drawable bg) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            setBackground(bg);
+        } else {
+            setBackgroundDrawable(bg);
+        }
+    }
+
+    private void initAttributes(Context context, AttributeSet attributeSet,
+                                StateListDrawable states) {
+        TypedArray attr = getTypedArray(context, attributeSet,
+                R.styleable.FlatButton);
+        if (attr == null) {
             return;
         }
 
         try {
-            GradientDrawable drawablePressed =
-                    (GradientDrawable) getGradientDrawable(R.drawable.rect_pressed).mutate();
+            GradientDrawable drawablePressed = (GradientDrawable) getGradientDrawable(
+                    R.drawable.rect_pressed).mutate();
 
-            if(attr.hasValue(R.styleable.FlatButton_colorPressed)) {
-                drawablePressed.setColor(getColor(attr, R.styleable.FlatButton_colorPressed));
+            if (attr.hasValue(R.styleable.FlatButton_colorPressed)) {
+                drawablePressed.setColor(getColor(attr,
+                        R.styleable.FlatButton_colorPressed));
             }
 
-            LayerDrawable drawableNormal =
-                    (LayerDrawable) getDrawable(R.drawable.rect_normal).mutate();;
+            LayerDrawable drawableNormal = (LayerDrawable) getDrawable(
+                    R.drawable.rect_normal).mutate();
 
-            GradientDrawable drawableTop =
-                    (GradientDrawable) drawableNormal.getDrawable(0).mutate();;
-            GradientDrawable drawableBottom =
-                    (GradientDrawable) drawableNormal.getDrawable(1).mutate();;
+            GradientDrawable drawableTop = (GradientDrawable) drawableNormal.getDrawable(
+                    0).mutate();
+            GradientDrawable drawableBottom = (GradientDrawable) drawableNormal.getDrawable(
+                    1).mutate();
 
-            if(attr.hasValue(R.styleable.FlatButton_colorNormal)) {
-                drawableBottom.setColor(getColor(attr, R.styleable.FlatButton_colorNormal));
+            if (attr.hasValue(R.styleable.FlatButton_colorNormal)) {
+                drawableBottom.setColor(getColor(attr,
+                        R.styleable.FlatButton_colorNormal));
             }
 
-            if(attr.hasValue(R.styleable.FlatButton_colorPressed)) {
-                drawableTop.setColor(getColor(attr, R.styleable.FlatButton_colorPressed));
+            if (attr.hasValue(R.styleable.FlatButton_colorPressed)) {
+                drawableTop.setColor(getColor(attr,
+                        R.styleable.FlatButton_colorPressed));
             }
 
-            states.addState(new int[] {android.R.attr.state_pressed}, drawablePressed);
-            states.addState(new int[] { }, drawableNormal);
+            states.addState(new int[] { android.R.attr.state_pressed },
+                    drawablePressed);
+            states.addState(new int[] {}, drawableNormal);
 
         } finally {
             attr.recycle();
@@ -91,7 +107,8 @@ public class FlatButton extends Button {
         return attr.getColor(index, 0);
     }
 
-    protected TypedArray getTypedArray(Context context, AttributeSet attributeSet, int[] attr) {
+    protected TypedArray getTypedArray(Context context,
+                                       AttributeSet attributeSet, int[] attr) {
         return context.obtainStyledAttributes(attributeSet, attr, 0, 0);
     }
 }

@@ -1,16 +1,16 @@
 package com.dd.sample;
 
-import com.dd.processbutton.iml.SubmitProcessButton;
-import com.dd.sample.utils.ProgressGenerator;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.dd.processbutton.iml.SubmitProcessButton;
+import com.dd.sample.utils.ProgressGenerator;
 
-public class MessageActivity extends Activity implements ProgressGenerator.OnCompleteListener {
+public class MessageActivity extends Activity implements
+        ProgressGenerator.OnCompleteListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,12 +19,13 @@ public class MessageActivity extends Activity implements ProgressGenerator.OnCom
 
         final EditText editMessage = (EditText) findViewById(R.id.editMessage);
 
-        final ProgressGenerator progressGenerator = new ProgressGenerator(this);
+        final ProgressGenerator progressGenerator = new ProgressGenerator(this,
+                null);
         final SubmitProcessButton btnSend = (SubmitProcessButton) findViewById(R.id.btnSend);
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressGenerator.start(btnSend);
+                progressGenerator.start(btnSend, false);
                 btnSend.setEnabled(false);
                 editMessage.setEnabled(false);
             }

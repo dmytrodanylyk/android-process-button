@@ -2,6 +2,7 @@ package com.dd.processbutton;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -13,13 +14,15 @@ public abstract class ProcessButton extends FlatButton {
     private int mMaxProgress;
     private int mMinProgress;
 
-    private boolean mIsLoadingComplete;
-
     private GradientDrawable mProgressDrawable;
     private GradientDrawable mCompleteDrawable;
+    private Drawable mErrorDrawable;
+    private Drawable mNormalDrawable;
 
+    private CharSequence mNormalText;
     private CharSequence mLoadingText;
     private CharSequence mCompleteText;
+    private CharSequence mErrorText;
 
     public ProcessButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -40,10 +43,14 @@ public abstract class ProcessButton extends FlatButton {
         mMinProgress = 0;
         mMaxProgress = 100;
 
-        mProgressDrawable =
-                (GradientDrawable) getGradientDrawable(R.drawable.rect_progress).mutate();
-        mCompleteDrawable =
-                (GradientDrawable) getGradientDrawable(R.drawable.rect_complete).mutate();
+        mNormalDrawable = getBackground();
+        mNormalText = getText();
+
+        mProgressDrawable = (GradientDrawable) getGradientDrawable(
+                R.drawable.rect_progress).mutate();
+        mCompleteDrawable = (GradientDrawable) getGradientDrawable(
+                R.drawable.rect_complete).mutate();
+        mErrorDrawable = getDrawable(R.drawable.rect_error);
 
         if (attrs != null) {
             initAttributes(context, attrs);
@@ -51,7 +58,8 @@ public abstract class ProcessButton extends FlatButton {
     }
 
     private void initAttributes(Context context, AttributeSet attributeSet) {
-        TypedArray attr = getTypedArray(context, attributeSet, R.styleable.ProcessButton);
+        TypedArray attr = getTypedArray(context, attributeSet,
+                R.styleable.ProcessButton);
 
         if (attr == null) {
             return;
@@ -60,13 +68,20 @@ public abstract class ProcessButton extends FlatButton {
         try {
             mLoadingText = attr.getString(R.styleable.ProcessButton_progressText);
             mCompleteText = attr.getString(R.styleable.ProcessButton_completeText);
+            mErrorText = attr.getString(R.styleable.ProcessButton_errorText);
 
             if (attr.hasValue(R.styleable.ProcessButton_colorProgress)) {
-                mProgressDrawable.setColor(getColor(attr, R.styleable.ProcessButton_colorProgress));
+                mProgressDrawable.setColor(getColor(attr,
+                        R.styleable.ProcessButton_colorProgress));
             }
 
             if (attr.hasValue(R.styleable.ProcessButton_colorComplete)) {
-                mCompleteDrawable.setColor(getColor(attr, R.styleable.ProcessButton_colorComplete));
+                mCompleteDrawable.setColor(getColor(attr,
+                        R.styleable.ProcessButton_colorComplete));
+            }
+
+            if (attr.hasValue(R.styleable.ProcessButton_errorDrawable)) {
+                mErrorDrawable = attr.getDrawable(R.styleable.ProcessButton_errorDrawable);
             }
 
         } finally {
@@ -74,30 +89,79 @@ public abstract class ProcessButton extends FlatButton {
         }
     }
 
-    public void setProgress(int progress) {
-        setText(getLoadingText());
-
-        if (progress < mMinProgress) {
-            mProgress = mMinProgress;
-            mIsLoadingComplete = false;
-        } else if (progress >= mMaxProgress) {
-            mProgress = mMaxProgress;
-            mIsLoadingComplete = true;
-        } else {
-            mProgress = progress;
-            mIsLoadingComplete = false;
-        }
-
-        invalidate();
+    public void resetToNormal() {
+        setProgress(mMinProgress);
     }
 
-    protected void onLoadingComplete() {
-        if (getCompleteText() != null) {
-            setText(getCompleteText());
+    public void setErrorState() {
+        setProgress(-1);
+    }
+
+    public void setCompletionState() {
+        setProgress(mMaxProgress);
+    }
+
+    /**
+     * Sets the progress.
+     * 
+     * @param progress
+     *            The new progress value:
+     *            <ul>
+     *            <li>Negative value will show the error text and background
+     *            color.</li>
+     *            <li>0 progress will cause the button to go back to normal.</li>
+     *            <li>A progress >= than the max progress value, will cause the
+     *            button to show the completion text and background color.</li>
+     *            <li>Any value in (0..maxProgress) will increment the progress
+     *            bar accordingly.</li>
+     *            </ul>
+     */
+    public void setProgress(int progress) {
+        mProgress = progress;
+
+        if (mProgress < mMinProgress) {
+            onErrorState();
+        } else if (mProgress == mMinProgress) {
+            onBackToNormal();
+        } else if (mProgress >= mMaxProgress) {
+            mProgress = mMaxProgress;
+            onComplete();
+        } else {
+            onProgress();
+            invalidate();
+        }
+    }
+
+    protected void onBackToNormal() {
+        // No need for null-check in normal state.
+        setText(mNormalText);
+        setBackgroundCompat(mNormalDrawable);
+    }
+
+    public void onProgress() {
+        setBackgroundCompat(mNormalDrawable);
+        if (mLoadingText != null) {
+            setText(mLoadingText);
+        }
+    }
+
+    protected void onErrorState() {
+        if (mErrorText != null) {
+            setText(mErrorText);
         }
 
-        if (getCompleteDrawable() != null) {
-            setBackgroundDrawable(getCompleteDrawable());
+        if (mErrorDrawable != null) {
+            setBackgroundCompat(mErrorDrawable);
+        }
+    }
+
+    protected void onComplete() {
+        if (mCompleteText != null) {
+            setText(mCompleteText);
+        }
+
+        if (mCompleteDrawable != null) {
+            setBackgroundCompat(mCompleteDrawable);
         }
     }
 
@@ -113,8 +177,8 @@ public abstract class ProcessButton extends FlatButton {
         return mMinProgress;
     }
 
-    public boolean isLoadingComplete() {
-        return mIsLoadingComplete;
+    public boolean isInProgress() {
+        return (mProgress > 0 && mProgress < mMaxProgress);
     }
 
     public GradientDrawable getProgressDrawable() {
@@ -133,6 +197,14 @@ public abstract class ProcessButton extends FlatButton {
         return mCompleteText;
     }
 
+    public Drawable getErrorDrawable() {
+        return mErrorDrawable;
+    }
+
+    public void setErrorDrawable(Drawable errorDrawable) {
+        mErrorDrawable = errorDrawable;
+    }
+
     public void setProgressDrawable(GradientDrawable progressDrawable) {
         mProgressDrawable = progressDrawable;
     }
@@ -149,6 +221,13 @@ public abstract class ProcessButton extends FlatButton {
         mCompleteText = completeText;
     }
 
+    public CharSequence getErrorText() {
+        return mErrorText;
+    }
+
+    public void setErrorText(CharSequence errorText) {
+        mErrorText = errorText;
+    }
 
     @Override
     public Parcelable onSaveInstanceState() {
@@ -171,9 +250,25 @@ public abstract class ProcessButton extends FlatButton {
         }
     }
 
+    public Drawable getNormalDrawable() {
+        return mNormalDrawable;
+    }
+
+    public void setNormalDrawable(Drawable normalDrawable) {
+        mNormalDrawable = normalDrawable;
+    }
+
+    public CharSequence getNormalText() {
+        return mNormalText;
+    }
+
+    public void setNormalText(CharSequence normalText) {
+        mNormalText = normalText;
+    }
+
     /**
-     * A {@link android.os.Parcelable} representing the {@link com.dd.processbutton.ProcessButton}'s
-     * state.
+     * A {@link android.os.Parcelable} representing the
+     * {@link com.dd.processbutton.ProcessButton}'s state.
      */
     public static class SavedState extends BaseSavedState {
 

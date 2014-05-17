@@ -4,4 +4,6 @@
     <color name="blue_normal">@android:color/holo_blue_light</color>
     <color name="green_complete">@android:color/holo_green_light</color>
     <color name="purple_progress">@android:color/holo_purple</color>
+    <color name="red_normal">@android:color/holo_red_light</color>
+    <color name="red_pressed">@android:color/holo_red_dark</color>
 </resources>
