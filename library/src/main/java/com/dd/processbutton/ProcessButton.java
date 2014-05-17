@@ -99,7 +99,7 @@ public abstract class ProcessButton extends FlatButton {
         invalidate();
     }
 
-    private void onErrorState() {
+    protected void onErrorState() {
         if(getErrorText() != null) {
             setText(getErrorText());
         }

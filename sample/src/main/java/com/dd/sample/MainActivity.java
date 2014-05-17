@@ -35,7 +35,15 @@ public class MainActivity extends ListActivity {
             case 3:
                 startUploadActivity();
                 break;
+            case 4:
+                startStateSampleActivity();
+                break;
         }
+    }
+
+    private void startStateSampleActivity() {
+        Intent intent = new Intent(this, StateSampleActivity.class);
+        startActivity(intent);
     }
 
     private void startUploadActivity() {
