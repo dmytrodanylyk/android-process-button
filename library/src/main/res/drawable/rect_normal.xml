@@ -3,14 +3,14 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="rectangle">
-            <corners android:radius="2dp" />
+            <corners android:radius="@dimen/corner_radius" />
             <solid android:color="@color/blue_pressed" />
         </shape>
     </item>
 
-    <item android:bottom="3dp">
+    <item android:bottom="@dimen/layer_padding">
         <shape android:shape="rectangle">
-            <corners android:radius="2dp" />
+            <corners android:radius="@dimen/corner_radius" />
             <solid android:color="@color/blue_normal" />
         </shape>
     </item>

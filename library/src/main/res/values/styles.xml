@@ -9,5 +9,6 @@
     <declare-styleable name="FlatButton">
         <attr name="colorPressed" format="color" />
         <attr name="colorNormal" format="color" />
+        <attr name="cornerRadius" format="dimension" />
     </declare-styleable>
 </resources>

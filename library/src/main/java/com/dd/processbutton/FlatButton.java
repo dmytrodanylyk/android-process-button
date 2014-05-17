@@ -12,6 +12,8 @@ import android.widget.Button;
 
 public class FlatButton extends Button {
 
+    private float cornerRadius;
+
     public FlatButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init(context, attrs);
@@ -48,8 +50,13 @@ public class FlatButton extends Button {
         }
 
         try {
+
+            float defValue = getResources().getDimension(R.dimen.corner_radius);
+            cornerRadius = attr.getDimension(R.styleable.FlatButton_cornerRadius, defValue);
+
             GradientDrawable drawablePressed =
                     (GradientDrawable) getGradientDrawable(R.drawable.rect_pressed).mutate();
+            drawablePressed.setCornerRadius(getCornerRadius());
 
             if(attr.hasValue(R.styleable.FlatButton_colorPressed)) {
                 drawablePressed.setColor(getColor(attr, R.styleable.FlatButton_colorPressed));
@@ -60,8 +67,11 @@ public class FlatButton extends Button {
 
             GradientDrawable drawableTop =
                     (GradientDrawable) drawableNormal.getDrawable(0).mutate();;
+            drawableTop.setCornerRadius(getCornerRadius());
+
             GradientDrawable drawableBottom =
                     (GradientDrawable) drawableNormal.getDrawable(1).mutate();;
+            drawableBottom.setCornerRadius(getCornerRadius());
 
             if(attr.hasValue(R.styleable.FlatButton_colorNormal)) {
                 drawableBottom.setColor(getColor(attr, R.styleable.FlatButton_colorNormal));
@@ -77,6 +87,10 @@ public class FlatButton extends Button {
         } finally {
             attr.recycle();
         }
+    }
+
+    public float getCornerRadius() {
+        return cornerRadius;
     }
 
     protected GradientDrawable getGradientDrawable(int id) {
