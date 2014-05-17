@@ -1,7 +1,7 @@
 <resources>
     <declare-styleable name="ProcessButton">
-        <attr name="progressText" format="string" />
-        <attr name="completeText" format="string" />
+        <attr name="textProgress" format="string" />
+        <attr name="textComplete" format="string" />
         <attr name="colorProgress" format="color" />
         <attr name="colorComplete" format="color" />
     </declare-styleable>
