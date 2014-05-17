@@ -11,6 +11,8 @@ import android.widget.Button;
 
 public class FlatButton extends Button {
 
+    private StateListDrawable mNormalDrawable;
+    private CharSequence mNormalText;
     private float cornerRadius;
 
     public FlatButton(Context context, AttributeSet attrs, int defStyle) {
@@ -29,16 +31,15 @@ public class FlatButton extends Button {
     }
 
     private void init(Context context, AttributeSet attrs) {
-        StateListDrawable states = new StateListDrawable();
+        mNormalDrawable = new StateListDrawable();
         if (attrs != null) {
-            initAttributes(context, attrs, states);
+            initAttributes(context, attrs);
         }
-
-        setBackgroundDrawable(states);
-
+        mNormalText = getText().toString();
+        setBackgroundDrawable(mNormalDrawable);
     }
 
-    private void initAttributes(Context context, AttributeSet attributeSet, StateListDrawable states) {
+    private void initAttributes(Context context, AttributeSet attributeSet) {
         TypedArray attr = getTypedArray(context, attributeSet, R.styleable.FlatButton);
         if(attr == null) {
             return;
@@ -49,8 +50,9 @@ public class FlatButton extends Button {
             float defValue = getDimension(R.dimen.corner_radius);
             cornerRadius = attr.getDimension(R.styleable.FlatButton_cornerRadius, defValue);
 
-            states.addState(new int[] {android.R.attr.state_pressed}, createPressedDrawable(attr));
-            states.addState(new int[] { }, createNormalDrawable(attr));
+            mNormalDrawable.addState(new int[]{android.R.attr.state_pressed},
+                    createPressedDrawable(attr));
+            mNormalDrawable.addState(new int[] { }, createNormalDrawable(attr));
 
         } finally {
             attr.recycle();
@@ -91,10 +93,6 @@ public class FlatButton extends Button {
         return drawablePressed;
     }
 
-    public float getCornerRadius() {
-        return cornerRadius;
-    }
-
     protected Drawable getDrawable(int id) {
         return getResources().getDrawable(id);
     }
@@ -109,5 +107,17 @@ public class FlatButton extends Button {
 
     protected TypedArray getTypedArray(Context context, AttributeSet attributeSet, int[] attr) {
         return context.obtainStyledAttributes(attributeSet, attr, 0, 0);
+    }
+
+    public float getCornerRadius() {
+        return cornerRadius;
+    }
+
+    public StateListDrawable getNormalDrawable() {
+        return mNormalDrawable;
+    }
+
+    public CharSequence getNormalText() {
+        return mNormalText;
     }
 }

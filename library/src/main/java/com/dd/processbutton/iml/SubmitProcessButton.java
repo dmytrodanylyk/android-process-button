@@ -45,17 +45,7 @@ public class SubmitProcessButton extends ProcessButton {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        if (getProgress() >= getMaxProgress()) {
-            onLoadingComplete();
-        } else {
-            drawProgress(canvas);
-        }
-
-        super.onDraw(canvas);
-    }
-
-    private void drawProgress(Canvas canvas) {
+    public void drawProgress(Canvas canvas) {
         float scale = (float) getProgress() / (float) getMaxProgress();
         float indicatorWidth = (float) getMeasuredWidth() * scale;
 

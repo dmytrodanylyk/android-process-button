@@ -92,24 +92,22 @@ public class ActionProcessButton extends ProcessButton {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        if (getProgress() >= getMaxProgress()) {
-            onLoadingComplete();
-        } else {
-            switch (mMode) {
-                case ENDLESS:
-                    drawEndlessProgress(canvas);
-                    break;
-                case PROGRESS:
-                    drawProgress(canvas);
-                    break;
-            }
+    public void drawProgress(Canvas canvas) {
+        if(getBackground() != getNormalDrawable()) {
+            setBackgroundDrawable(getNormalDrawable());
         }
 
-        super.onDraw(canvas);
+        switch (mMode) {
+            case ENDLESS:
+                drawEndlessProgress(canvas);
+                break;
+            case PROGRESS:
+                drawLineProgress(canvas);
+                break;
+        }
     }
 
-    private void drawProgress(Canvas canvas) {
+    private void drawLineProgress(Canvas canvas) {
         float scale = (float) getProgress() / (float) getMaxProgress();
         float indicatorWidth = (float) getMeasuredWidth() * scale;
 

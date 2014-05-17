@@ -2,6 +2,7 @@ package com.dd.processbutton;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -74,18 +75,35 @@ public abstract class ProcessButton extends FlatButton {
     }
 
     public void setProgress(int progress) {
-        setText(getLoadingText());
+        mProgress = progress;
 
-        if (progress < mMinProgress) {
-            mProgress = mMinProgress;
-        } else if (progress >= mMaxProgress) {
-            mProgress = mMaxProgress;
+        if (mProgress == mMinProgress) {
+            // normal
+            setText(getNormalText());
+            setBackgroundDrawable(getNormalDrawable());
+        } else if (mProgress == mMaxProgress) {
+            // completed
+            setText(getCompleteText());
+            setBackgroundDrawable(getCompleteDrawable());
         } else {
-            mProgress = progress;
+            // progress
+            setText(getLoadingText());
         }
 
         invalidate();
     }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        // progress
+        if(mProgress > mMinProgress && mProgress < mMaxProgress) {
+            drawProgress(canvas);
+        }
+
+        super.onDraw(canvas);
+    }
+
+    public abstract void drawProgress(Canvas canvas);
 
     protected void onLoadingComplete() {
         if (getCompleteText() != null) {
