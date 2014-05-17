@@ -1,11 +1,13 @@
 package com.dd.processbutton;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.StateListDrawable;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.Button;
 
@@ -36,7 +38,7 @@ public class FlatButton extends Button {
             initAttributes(context, attrs);
         }
         mNormalText = getText().toString();
-        setBackgroundDrawable(mNormalDrawable);
+        setBackgroundCompat(mNormalDrawable);
     }
 
     private void initAttributes(Context context, AttributeSet attributeSet) {
@@ -119,5 +121,20 @@ public class FlatButton extends Button {
 
     public CharSequence getNormalText() {
         return mNormalText;
+    }
+
+    /**
+     * Set the View's background. Masks the API changes made in Jelly Bean.
+     *
+     * @param drawable
+     */
+    @SuppressWarnings("deprecation")
+    @SuppressLint("NewApi")
+    public void setBackgroundCompat(Drawable drawable) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            setBackground(drawable);
+        } else {
+            setBackgroundDrawable(drawable);
+        }
     }
 }
