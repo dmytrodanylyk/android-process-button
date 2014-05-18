@@ -54,3 +54,5 @@ SOFTWARE.
 [Screenshots]:https://github.com/dmytrodanylyk/android-process-buton/wiki/Screenshots
 [User Guide]:https://github.com/dmytrodanylyk/android-process-buton/wiki/User-Guide
 [Gradle, Please]:http://gradleplease.appspot.com/
+
+[![Analytics](https://ga-beacon.appspot.com/UA-44382495-2/android-process-buton/readme)](https://github.com/igrigorik/ga-beacon)
