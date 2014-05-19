@@ -110,6 +110,7 @@ public abstract class ProcessButton extends FlatButton {
         if(getLoadingText() != null) {
             setText(getLoadingText());
         }
+        setBackgroundCompat(getNormalDrawable());
     }
 
     protected void onCompleteState() {
