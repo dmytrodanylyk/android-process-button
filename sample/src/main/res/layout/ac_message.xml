@@ -22,7 +22,7 @@
         android:text="@string/Send"
         android:textColor="@android:color/white"
         android:textSize="18sp"
-        custom:completeText="@string/Done"
-        custom:progressText="@string/Loading" />
+        custom:textComplete="@string/Done"
+        custom:textProgress="@string/Loading" />
 
 </LinearLayout>

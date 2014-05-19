@@ -2,6 +2,7 @@ package com.dd.processbutton;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -13,13 +14,13 @@ public abstract class ProcessButton extends FlatButton {
     private int mMaxProgress;
     private int mMinProgress;
 
-    private boolean mIsLoadingComplete;
-
     private GradientDrawable mProgressDrawable;
     private GradientDrawable mCompleteDrawable;
+    private GradientDrawable mErrorDrawable;
 
     private CharSequence mLoadingText;
     private CharSequence mCompleteText;
+    private CharSequence mErrorText;
 
     public ProcessButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -40,10 +41,14 @@ public abstract class ProcessButton extends FlatButton {
         mMinProgress = 0;
         mMaxProgress = 100;
 
-        mProgressDrawable =
-                (GradientDrawable) getGradientDrawable(R.drawable.rect_progress).mutate();
-        mCompleteDrawable =
-                (GradientDrawable) getGradientDrawable(R.drawable.rect_complete).mutate();
+        mProgressDrawable = (GradientDrawable) getDrawable(R.drawable.rect_progress).mutate();
+        mProgressDrawable.setCornerRadius(getCornerRadius());
+
+        mCompleteDrawable = (GradientDrawable) getDrawable(R.drawable.rect_complete).mutate();
+        mCompleteDrawable.setCornerRadius(getCornerRadius());
+
+        mErrorDrawable = (GradientDrawable) getDrawable(R.drawable.rect_error).mutate();
+        mErrorDrawable.setCornerRadius(getCornerRadius());
 
         if (attrs != null) {
             initAttributes(context, attrs);
@@ -58,16 +63,20 @@ public abstract class ProcessButton extends FlatButton {
         }
 
         try {
-            mLoadingText = attr.getString(R.styleable.ProcessButton_progressText);
-            mCompleteText = attr.getString(R.styleable.ProcessButton_completeText);
+            mLoadingText = attr.getString(R.styleable.ProcessButton_textProgress);
+            mCompleteText = attr.getString(R.styleable.ProcessButton_textComplete);
 
-            if (attr.hasValue(R.styleable.ProcessButton_colorProgress)) {
-                mProgressDrawable.setColor(getColor(attr, R.styleable.ProcessButton_colorProgress));
-            }
+            int purple = getColor(R.color.purple_progress);
+            int colorProgress = attr.getColor(R.styleable.ProcessButton_colorProgress, purple);
+            mProgressDrawable.setColor(colorProgress);
 
-            if (attr.hasValue(R.styleable.ProcessButton_colorComplete)) {
-                mCompleteDrawable.setColor(getColor(attr, R.styleable.ProcessButton_colorComplete));
-            }
+            int green = getColor(R.color.green_complete);
+            int colorComplete = attr.getColor(R.styleable.ProcessButton_colorComplete, green);
+            mCompleteDrawable.setColor(colorComplete);
+
+            int red = getColor(R.color.red_error);
+            int colorError = attr.getColor(R.styleable.ProcessButton_colorError, red);
+            mErrorDrawable.setColor(colorError);
 
         } finally {
             attr.recycle();
@@ -75,31 +84,60 @@ public abstract class ProcessButton extends FlatButton {
     }
 
     public void setProgress(int progress) {
-        setText(getLoadingText());
+        mProgress = progress;
 
-        if (progress < mMinProgress) {
-            mProgress = mMinProgress;
-            mIsLoadingComplete = false;
-        } else if (progress >= mMaxProgress) {
-            mProgress = mMaxProgress;
-            mIsLoadingComplete = true;
+        if (mProgress == mMinProgress) {
+            onNormalState();
+        } else if (mProgress == mMaxProgress) {
+            onCompleteState();
+        } else if (mProgress < mMinProgress){
+            onErrorState();
         } else {
-            mProgress = progress;
-            mIsLoadingComplete = false;
+            onProgress();
         }
 
         invalidate();
     }
 
-    protected void onLoadingComplete() {
-        if (getCompleteText() != null) {
+    protected void onErrorState() {
+        if(getErrorText() != null) {
+            setText(getErrorText());
+        }
+        setBackgroundCompat(getErrorDrawable());
+    }
+
+    protected void onProgress() {
+        if(getLoadingText() != null) {
+            setText(getLoadingText());
+        }
+        setBackgroundCompat(getNormalDrawable());
+    }
+
+    protected void onCompleteState() {
+        if(getCompleteText() != null) {
             setText(getCompleteText());
         }
-
-        if (getCompleteDrawable() != null) {
-            setBackgroundDrawable(getCompleteDrawable());
-        }
+        setBackgroundCompat(getCompleteDrawable());
     }
+
+    protected void onNormalState() {
+        if(getNormalText() != null) {
+            setText(getNormalText());
+        }
+        setBackgroundCompat(getNormalDrawable());
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        // progress
+        if(mProgress > mMinProgress && mProgress < mMaxProgress) {
+            drawProgress(canvas);
+        }
+
+        super.onDraw(canvas);
+    }
+
+    public abstract void drawProgress(Canvas canvas);
 
     public int getProgress() {
         return mProgress;
@@ -111,10 +149,6 @@ public abstract class ProcessButton extends FlatButton {
 
     public int getMinProgress() {
         return mMinProgress;
-    }
-
-    public boolean isLoadingComplete() {
-        return mIsLoadingComplete;
     }
 
     public GradientDrawable getProgressDrawable() {
@@ -149,6 +183,21 @@ public abstract class ProcessButton extends FlatButton {
         mCompleteText = completeText;
     }
 
+    public GradientDrawable getErrorDrawable() {
+        return mErrorDrawable;
+    }
+
+    public void setErrorDrawable(GradientDrawable errorDrawable) {
+        mErrorDrawable = errorDrawable;
+    }
+
+    public CharSequence getErrorText() {
+        return mErrorText;
+    }
+
+    public void setErrorText(CharSequence errorText) {
+        mErrorText = errorText;
+    }
 
     @Override
     public Parcelable onSaveInstanceState() {

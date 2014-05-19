@@ -32,6 +32,11 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo.Light" />
 
+        <activity
+            android:name="com.dd.sample.StateSampleActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.Light" />
+
     </application>
 
 </manifest>
