@@ -2,7 +2,7 @@
 
 Custom android button which can indicate progress.
 
-Latest version **0.0.5**
+Latest version **0.0.6**
 
 ![](screenshots/sample1_small1.gif)
 ![](screenshots/sample1_small2.gif)
@@ -19,7 +19,7 @@ The lib is available on Maven Central, you can find it with [Gradle, please]
 
 ```
 dependencies {
-    compile 'com.github.dmytrodanylyk.android-process-button:library:0.0.5'
+    compile 'com.github.dmytrodanylyk.android-process-button:library:0.0.6'
 }
 ```
 
