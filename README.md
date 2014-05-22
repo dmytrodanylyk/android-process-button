@@ -1,6 +1,6 @@
 ### Description
 
-Custom android button which can indicate progress.
+Android Buttons With Built-in Progress Meters.
 
 Latest version **0.0.6**
 
