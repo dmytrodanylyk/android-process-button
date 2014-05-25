@@ -17,7 +17,7 @@
     <com.dd.processbutton.iml.SubmitProcessButton
         android:id="@+id/btnSend"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:minWidth="100dp"
         android:text="@string/Send"
         android:textColor="@android:color/white"

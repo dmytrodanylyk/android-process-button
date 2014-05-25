@@ -27,7 +27,7 @@ public class ProgressGenerator {
             public void run() {
                 mProgress += 10;
                 button.setProgress(mProgress);
-                if (mProgress <= 110) {
+                if (mProgress < 100) {
                     handler.postDelayed(this, generateDelay());
                 } else {
                     mListener.onComplete();

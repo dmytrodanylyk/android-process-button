@@ -1,5 +1,12 @@
+## 0.0.7
+* Added api 10 compatibility
+* Fixed bug in ProgressGenerator class
+
+## 0.0.6
+Bug fixes
+
 ## 0.0.5
-* Fixed repository name type from `android-process-buton` to `android-process-button` 
+* Fixed repository name type from `android-process-buton` to `android-process-button`
 
 ## 0.0.4
 **Attributes**
@@ -14,7 +21,7 @@ Added attribute to control button corner roundness:
 * `cornerRadius`
 
 
-**ProcessButton** 
+**ProcessButton**
 
 Now button state depends on progress:
 
