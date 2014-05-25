@@ -75,10 +75,10 @@ public class ActionProcessButton extends ProcessButton {
 
         mMode = Mode.ENDLESS;
 
-        mColor1 = res.getColor(android.R.color.holo_blue_bright);
-        mColor2 = res.getColor(android.R.color.holo_green_light);
-        mColor3 = res.getColor(android.R.color.holo_orange_light);
-        mColor4 = res.getColor(android.R.color.holo_red_light);
+        mColor1 = res.getColor(R.color.holo_blue_bright);
+        mColor2 = res.getColor(R.color.holo_green_light);
+        mColor3 = res.getColor(R.color.holo_orange_light);
+        mColor4 = res.getColor(R.color.holo_red_light);
     }
 
     public void setMode(Mode mode) {
