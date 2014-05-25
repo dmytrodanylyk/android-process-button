@@ -18,7 +18,7 @@
     <com.dd.processbutton.iml.GenerateProcessButton
         android:id="@+id/btnUpload"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:text="@string/Upload"
         android:textColor="@android:color/white"
         android:textSize="18sp"
