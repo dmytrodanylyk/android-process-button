@@ -1,13 +1,13 @@
-## Description
+### Description
 
 Custom android button which can indicate progress.
 
-Latest version **0.0.2**
+Latest version **0.0.6**
 
 ![](screenshots/sample1_small1.gif)
 ![](screenshots/sample1_small2.gif)
 
-Wiki
+### Wiki
 
 - [Home]
 - [Screenshots]
@@ -15,18 +15,19 @@ Wiki
 
 ### Integration
 
-The lib **soon will be available** on Maven Central.
+The lib is available on Maven Central, you can find it with [Gradle, please]
 
 ```
 dependencies {
-    // replace x.x.x with version number
-    compile 'com.github.dmytrodanylyk.android-process-buton:library:x.x.x'
+    compile 'com.github.dmytrodanylyk.android-process-button:library:0.0.6'
 }
 ```
 
-You can find the last version on [Gradle Please]
+### Sample
 
-## License
+- Available on [DevAppsDirect]
+
+### License
 
 ```
 The MIT License (MIT)
@@ -56,4 +57,7 @@ SOFTWARE.
 [Home]:https://github.com/dmytrodanylyk/android-process-buton/wiki
 [Screenshots]:https://github.com/dmytrodanylyk/android-process-buton/wiki/Screenshots
 [User Guide]:https://github.com/dmytrodanylyk/android-process-buton/wiki/User-Guide
-[Gradle Please]:http://gradleplease.appspot.com/
+[Gradle, Please]:http://gradleplease.appspot.com/
+[DevAppsDirect]:https://play.google.com/store/apps/details?id=com.inappsquared.devappsdirect
+
+[![Analytics](https://ga-beacon.appspot.com/UA-44382495-2/android-process-buton/readme)](https://github.com/igrigorik/ga-beacon)
