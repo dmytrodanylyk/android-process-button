@@ -1,6 +1,7 @@
 package com.dd.processbutton.iml;
 
 import com.dd.processbutton.ProcessButton;
+import com.dd.processbutton.R;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -118,8 +119,8 @@ public class ActionProcessButton extends ProcessButton {
     }
 
     private void drawEndlessProgress(Canvas canvas) {
-        double indicatorHeightPercent = 0.05; // 5%
-        int bottom = (int) (getMeasuredHeight() - getMeasuredHeight() * indicatorHeightPercent);
+        double indicatorHeight = getDimension(R.dimen.layer_padding);
+        int bottom = (int) (getMeasuredHeight() -  indicatorHeight);
 
         if (mProgressBar == null) {
             mProgressBar = new ProgressBar(this);
