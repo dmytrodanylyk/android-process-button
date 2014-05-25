@@ -19,7 +19,7 @@
     <com.dd.processbutton.iml.SubmitProcessButton
         android:id="@+id/btnSubmit"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:text="@string/Upload"
         android:textColor="@android:color/white"
@@ -31,7 +31,7 @@
     <com.dd.processbutton.iml.GenerateProcessButton
         android:id="@+id/btnGenerate"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:text="@string/Upload"
         android:textColor="@android:color/white"
@@ -43,28 +43,28 @@
     <Button
         android:id="@+id/btnProgressError"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:text="Error State setProgress(-1)" />
 
     <Button
         android:id="@+id/btnProgressNormal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginTop="8dp"
         android:text="Normal State setProgress(0)" />
 
     <Button
         android:id="@+id/btnProgressLoading"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginTop="8dp"
         android:text="Progress State setProgress(50)" />
 
     <Button
         android:id="@+id/btnProgressComplete"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginTop="8dp"
         android:text="Complete State setProgress(100)" />
 
