@@ -37,6 +37,11 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo.Light" />
 
+        <activity
+            android:name="com.dd.sample.InputProgressActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.Light" />
+
     </application>
 
 </manifest>

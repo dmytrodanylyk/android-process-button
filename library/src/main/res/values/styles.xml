@@ -13,4 +13,10 @@
         <attr name="colorNormal" format="color" />
         <attr name="cornerRadius" format="dimension" />
     </declare-styleable>
+
+    <declare-styleable name="InputProgressView">
+        <attr name="colorBackground" format="color" />
+        <attr name="colorProgressInactive" format="color" />
+        <attr name="colorProgressActive" format="color" />
+    </declare-styleable>
 </resources>

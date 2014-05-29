@@ -38,6 +38,9 @@ public class MainActivity extends ListActivity {
             case 4:
                 startStateSampleActivity();
                 break;
+            case 5:
+                InputProgressActivity.startThisActivity(this);
+                break;
         }
     }
 

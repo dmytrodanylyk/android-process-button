@@ -15,6 +15,8 @@
     <string name="Beautiful_Picture">Beautiful Picture</string>
     <string name="Uploading">Uploading</string>
     <string name="Loading_Complete">Loading Complete, button is disabled</string>
+    <string name="Please_fill_field">Please fill the field before continuing</string>
+    <string name="You_are_registered">You are now registered!\nThank you!</string>
 
     <array name="sample_list">
         <item>Action Button Progress sample</item>
@@ -22,6 +24,7 @@
         <item>Submit Button Progress sample</item>
         <item>Generate Button Progress sample</item>
         <item>Button State sample</item>
+        <item>Input Progress sample</item>
     </array>
 
 </resources>
