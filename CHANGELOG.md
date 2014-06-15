@@ -1,3 +1,7 @@
+## 1.0.0
+* Fixed issue: Button padding are ignored #11
+* Added prefix 'pb_' for all custom attributes to avoid conflict #12
+
 ## 0.0.7
 * Added api 10 compatibility
 * Fixed bug in ProgressGenerator class

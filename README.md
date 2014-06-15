@@ -2,7 +2,7 @@
 
 Android Buttons With Built-in Progress Meters.
 
-Latest version **0.0.7**
+Latest version **1.0.0**
 
 ![](screenshots/sample1_small1.gif)
 ![](screenshots/sample1_small2.gif)
@@ -19,7 +19,7 @@ The lib is available on Maven Central, you can find it with [Gradle, please]
 
 ```
 dependencies {
-    compile 'com.github.dmytrodanylyk.android-process-button:library:0.0.7'
+    compile 'com.github.dmytrodanylyk.android-process-button:library:1.0.0'
 }
 ```
 
