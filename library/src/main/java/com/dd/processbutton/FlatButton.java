@@ -131,10 +131,16 @@ public class FlatButton extends Button {
     @SuppressWarnings("deprecation")
     @SuppressLint("NewApi")
     public void setBackgroundCompat(Drawable drawable) {
+        int pL = getPaddingLeft();
+        int pT = getPaddingTop();
+        int pR = getPaddingRight();
+        int pB = getPaddingBottom();
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             setBackground(drawable);
         } else {
             setBackgroundDrawable(drawable);
         }
+        setPadding(pL, pT, pR, pB);
     }
 }
