@@ -35,12 +35,12 @@
             android:text="@string/Sign_in"
             android:textColor="@android:color/white"
             android:textSize="18sp"
-            custom:colorComplete="@color/green_complete"
-            custom:colorNormal="@color/blue_normal"
-            custom:colorPressed="@color/blue_pressed"
-            custom:colorProgress="@color/purple_progress"
-            custom:textComplete="@string/Success"
-            custom:textProgress="@string/Loading" />
+            custom:pb_colorComplete="@color/green_complete"
+            custom:pb_colorNormal="@color/blue_normal"
+            custom:pb_colorPressed="@color/blue_pressed"
+            custom:pb_colorProgress="@color/purple_progress"
+            custom:pb_textComplete="@string/Success"
+            custom:pb_textProgress="@string/Loading" />
 
     </LinearLayout>
 

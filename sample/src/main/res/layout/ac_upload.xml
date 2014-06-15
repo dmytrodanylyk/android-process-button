@@ -22,7 +22,7 @@
         android:text="@string/Upload"
         android:textColor="@android:color/white"
         android:textSize="18sp"
-        custom:textComplete="@string/Done"
-        custom:textProgress="@string/Uploading" />
+        custom:pb_textComplete="@string/Done"
+        custom:pb_textProgress="@string/Uploading" />
 
 </LinearLayout>

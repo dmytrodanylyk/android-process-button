@@ -50,7 +50,7 @@ public class FlatButton extends Button {
         try {
 
             float defValue = getDimension(R.dimen.corner_radius);
-            cornerRadius = attr.getDimension(R.styleable.FlatButton_cornerRadius, defValue);
+            cornerRadius = attr.getDimension(R.styleable.FlatButton_pb_cornerRadius, defValue);
 
             mNormalDrawable.addState(new int[]{android.R.attr.state_pressed},
                     createPressedDrawable(attr));
@@ -70,7 +70,7 @@ public class FlatButton extends Button {
         drawableTop.setCornerRadius(getCornerRadius());
 
         int blueDark = getColor(R.color.blue_pressed);
-        int colorPressed = attr.getColor(R.styleable.FlatButton_colorPressed, blueDark);
+        int colorPressed = attr.getColor(R.styleable.FlatButton_pb_colorPressed, blueDark);
         drawableTop.setColor(colorPressed);
 
         GradientDrawable drawableBottom =
@@ -78,7 +78,7 @@ public class FlatButton extends Button {
         drawableBottom.setCornerRadius(getCornerRadius());
 
         int blueNormal = getColor(R.color.blue_normal);
-        int colorNormal = attr.getColor(R.styleable.FlatButton_colorNormal, blueNormal);
+        int colorNormal = attr.getColor(R.styleable.FlatButton_pb_colorNormal, blueNormal);
         drawableBottom.setColor(colorNormal);
         return drawableNormal;
     }
@@ -89,7 +89,7 @@ public class FlatButton extends Button {
         drawablePressed.setCornerRadius(getCornerRadius());
 
         int blueDark = getColor(R.color.blue_pressed);
-        int colorPressed = attr.getColor(R.styleable.FlatButton_colorPressed, blueDark);
+        int colorPressed = attr.getColor(R.styleable.FlatButton_pb_colorPressed, blueDark);
         drawablePressed.setColor(colorPressed);
 
         return drawablePressed;

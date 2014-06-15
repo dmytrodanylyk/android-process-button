@@ -63,20 +63,20 @@ public abstract class ProcessButton extends FlatButton {
         }
 
         try {
-            mLoadingText = attr.getString(R.styleable.ProcessButton_textProgress);
-            mCompleteText = attr.getString(R.styleable.ProcessButton_textComplete);
-            mErrorText = attr.getString(R.styleable.ProcessButton_textError);
+            mLoadingText = attr.getString(R.styleable.ProcessButton_pb_textProgress);
+            mCompleteText = attr.getString(R.styleable.ProcessButton_pb_textComplete);
+            mErrorText = attr.getString(R.styleable.ProcessButton_pb_textError);
 
             int purple = getColor(R.color.purple_progress);
-            int colorProgress = attr.getColor(R.styleable.ProcessButton_colorProgress, purple);
+            int colorProgress = attr.getColor(R.styleable.ProcessButton_pb_colorProgress, purple);
             mProgressDrawable.setColor(colorProgress);
 
             int green = getColor(R.color.green_complete);
-            int colorComplete = attr.getColor(R.styleable.ProcessButton_colorComplete, green);
+            int colorComplete = attr.getColor(R.styleable.ProcessButton_pb_colorComplete, green);
             mCompleteDrawable.setColor(colorComplete);
 
             int red = getColor(R.color.red_error);
-            int colorError = attr.getColor(R.styleable.ProcessButton_colorError, red);
+            int colorError = attr.getColor(R.styleable.ProcessButton_pb_colorError, red);
             mErrorDrawable.setColor(colorError);
 
         } finally {

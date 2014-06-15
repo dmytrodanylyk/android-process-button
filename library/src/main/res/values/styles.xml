@@ -1,16 +1,16 @@
 <resources>
     <declare-styleable name="ProcessButton">
-        <attr name="textProgress" format="string" />
-        <attr name="textComplete" format="string" />
-        <attr name="textError" format="string" />
-        <attr name="colorProgress" format="color" />
-        <attr name="colorComplete" format="color" />
-        <attr name="colorError" format="color" />
+        <attr name="pb_textProgress" format="string" />
+        <attr name="pb_textComplete" format="string" />
+        <attr name="pb_textError" format="string" />
+        <attr name="pb_colorProgress" format="color" />
+        <attr name="pb_colorComplete" format="color" />
+        <attr name="pb_colorError" format="color" />
     </declare-styleable>
 
     <declare-styleable name="FlatButton">
-        <attr name="colorPressed" format="color" />
-        <attr name="colorNormal" format="color" />
-        <attr name="cornerRadius" format="dimension" />
+        <attr name="pb_colorPressed" format="color" />
+        <attr name="pb_colorNormal" format="color" />
+        <attr name="pb_cornerRadius" format="dimension" />
     </declare-styleable>
 </resources>
