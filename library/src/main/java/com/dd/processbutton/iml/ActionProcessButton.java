@@ -108,6 +108,14 @@ public class ActionProcessButton extends ProcessButton {
         }
     }
 
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        if (mProgressBar != null) {
+            setupProgressBarBounds();
+        }
+    }
+
     private void drawLineProgress(Canvas canvas) {
         float scale = (float) getProgress() / (float) getMaxProgress();
         float indicatorWidth = (float) getMeasuredWidth() * scale;
@@ -119,12 +127,9 @@ public class ActionProcessButton extends ProcessButton {
     }
 
     private void drawEndlessProgress(Canvas canvas) {
-        double indicatorHeight = getDimension(R.dimen.layer_padding);
-        int bottom = (int) (getMeasuredHeight() -  indicatorHeight);
-
         if (mProgressBar == null) {
             mProgressBar = new ProgressBar(this);
-            mProgressBar.setBounds(0, bottom, getMeasuredWidth(), getMeasuredHeight());
+            setupProgressBarBounds();
             mProgressBar.setColorScheme(mColor1, mColor2, mColor3, mColor4);
             mProgressBar.start();
         }
@@ -132,6 +137,12 @@ public class ActionProcessButton extends ProcessButton {
         if (getProgress() > 0) {
             mProgressBar.draw(canvas);
         }
+    }
+
+    private void setupProgressBarBounds() {
+        double indicatorHeight = getDimension(R.dimen.layer_padding);
+        int bottom = (int) (getMeasuredHeight() - indicatorHeight);
+        mProgressBar.setBounds(0, bottom, getMeasuredWidth(), getMeasuredHeight());
     }
 
     public static class ProgressBar {
