@@ -1,3 +1,6 @@
+## 1.0.1
+* Fixed issue: buggy behavior when an endless button gets re-sized #14
+
 ## 1.0.0
 * Fixed issue: Button padding are ignored #11
 * Added prefix 'pb_' for all custom attributes to avoid conflict #12
