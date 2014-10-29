@@ -1,3 +1,6 @@
+## 1.0.2
+* Added library description file for About AboutLibraries
+
 ## 1.0.1
 * Fixed issue: buggy behavior when an endless button gets re-sized #14
 
