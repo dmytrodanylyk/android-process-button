@@ -54,6 +54,10 @@ public class FlatButton extends Button {
 
             mNormalDrawable.addState(new int[]{android.R.attr.state_pressed},
                     createPressedDrawable(attr));
+            mNormalDrawable.addState(new int[]{android.R.attr.state_focused},
+                    createPressedDrawable(attr));
+            mNormalDrawable.addState(new int[]{android.R.attr.state_selected},
+                    createPressedDrawable(attr));
             mNormalDrawable.addState(new int[] { }, createNormalDrawable(attr));
 
         } finally {
