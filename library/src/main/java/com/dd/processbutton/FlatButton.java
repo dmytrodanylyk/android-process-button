@@ -43,7 +43,7 @@ public class FlatButton extends Button {
 
     private void initAttributes(Context context, AttributeSet attributeSet) {
         TypedArray attr = getTypedArray(context, attributeSet, R.styleable.FlatButton);
-        if(attr == null) {
+        if (attr == null) {
             return;
         }
 
@@ -54,7 +54,11 @@ public class FlatButton extends Button {
 
             mNormalDrawable.addState(new int[]{android.R.attr.state_pressed},
                     createPressedDrawable(attr));
-            mNormalDrawable.addState(new int[] { }, createNormalDrawable(attr));
+            mNormalDrawable.addState(new int[]{android.R.attr.state_focused},
+                    createPressedDrawable(attr));
+            mNormalDrawable.addState(new int[]{android.R.attr.state_selected},
+                    createPressedDrawable(attr));
+            mNormalDrawable.addState(new int[]{}, createNormalDrawable(attr));
 
         } finally {
             attr.recycle();
