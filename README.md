@@ -1,8 +1,8 @@
-### Description
+### Description [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.dmytrodanylyk.android-process-button/library/badge.png?style=flat)](https://maven-badges.herokuapp.com/maven-central/cz.jirutka.rsql/rsql-parser) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Android%20Process%20Button-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/367)
 
 Android Buttons With Built-in Progress Meters.
 
-Latest version **1.0.2**
+Latest version **1.0.3**
 
 ![](screenshots/sample1_small1.gif)
 ![](screenshots/sample1_small2.gif)
@@ -19,7 +19,7 @@ The lib is available on Maven Central, you can find it with [Gradle, please]
 
 ```
 dependencies {
-    compile 'com.github.dmytrodanylyk.android-process-button:library:1.0.2'
+    compile 'com.github.dmytrodanylyk.android-process-button:library:1.0.3'
 }
 ```
 

@@ -1,3 +1,6 @@
+## 1.0.3
+* Added focused and selected states
+
 ## 1.0.2
 * Added library description file for About AboutLibraries
 
