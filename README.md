@@ -1,8 +1,6 @@
-### Description [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.dmytrodanylyk.android-process-button/library/badge.png?style=flat)](https://maven-badges.herokuapp.com/maven-central/cz.jirutka.rsql/rsql-parser) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Android%20Process%20Button-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/367)
+### Description [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.dmytrodanylyk.android-process-button/library/badge.png?style=flat)](http://goo.gl/GydnKe) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Android%20Process%20Button-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/367)
 
 Android Buttons With Built-in Progress Meters.
-
-Latest version **1.0.3**
 
 ![](screenshots/sample1_small1.gif)
 ![](screenshots/sample1_small2.gif)
@@ -25,7 +23,14 @@ dependencies {
 
 ### Sample
 
-- Available on [DevAppsDirect]
+<a href="https://play.google.com/store/apps/details?id=com.dd.sample.processbutton">
+  <img alt="Android app on Google Play"
+       src="https://developer.android.com/images/brand/en_app_rgb_wo_45.png" />
+</a>
+<a href="https://play.google.com/store/apps/details?id=com.inappsquared.devappsdirect">
+  <img alt="DevAppsDirect"
+       src="http://www.inappsquared.com/img/icons/devappsdirect_icon.png" width="48" height="48" />
+</a>
 
 ### License
 
@@ -58,6 +63,5 @@ SOFTWARE.
 [Screenshots]:https://github.com/dmytrodanylyk/android-process-buton/wiki/Screenshots
 [User Guide]:https://github.com/dmytrodanylyk/android-process-buton/wiki/User-Guide
 [Gradle, Please]:http://gradleplease.appspot.com/
-[DevAppsDirect]:https://play.google.com/store/apps/details?id=com.inappsquared.devappsdirect
 
 [![Analytics](https://ga-beacon.appspot.com/UA-44382495-2/android-process-buton/readme)](https://github.com/igrigorik/ga-beacon)

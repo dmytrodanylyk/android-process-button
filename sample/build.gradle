@@ -1,3 +1,5 @@
+import java.text.SimpleDateFormat
+
 buildscript {
     repositories {
         jcenter()
@@ -22,6 +24,7 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 21
+        applicationId project.PACKAGE_NAME
         versionCode Integer.parseInt(project.VERSION_CODE)
         versionName project.VERSION_NAME
     }
@@ -38,6 +41,19 @@ android {
             signingConfig project.hasProperty('storeFile') ? signingConfigs.release : signingConfigs.debug
         }
     }
+
+    applicationVariants.all { variant ->
+        def oldFile = variant.outputFile
+        def newPath = "${variant.name}" + "_" + "${variant.versionName}" + "_" + "${variant.versionCode}" + "_" + getDate() + ".apk";
+        variant.outputFile = new File(oldFile.parentFile, newPath)
+    }
+}
+
+
+def getDate() {
+    def formatter = new SimpleDateFormat('dd-MM-yyyy');
+    def date = new Date();
+    return formatter.format(date);
 }
 
 dependencies {
