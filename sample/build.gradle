@@ -43,9 +43,11 @@ android {
     }
 
     applicationVariants.all { variant ->
-        def oldFile = variant.outputFile
-        def newPath = "${variant.name}" + "_" + "${variant.versionName}" + "_" + "${variant.versionCode}" + "_" + getDate() + ".apk";
-        variant.outputFile = new File(oldFile.parentFile, newPath)
+        variant.outputs.each { output ->
+            def oldFile = output.outputFile
+            def newPath = "${variant.name}" + "_" + "${variant.versionName}" + "_" + "${variant.versionCode}" + "_" + getDate() + ".apk";
+            output.outputFile = new File(oldFile.parentFile, newPath)
+        }
     }
 }
 
