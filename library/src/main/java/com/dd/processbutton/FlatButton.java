@@ -65,9 +65,19 @@ public class FlatButton extends Button {
         }
     }
 
-    private LayerDrawable createNormalDrawable(TypedArray attr) {
+    private Drawable createNormalDrawable(TypedArray attr) {
+        Drawable drawableNormal;
+        if (attr.getBoolean(R.styleable.FlatButton_pb_hasBottom, true)) {
+            drawableNormal = createLayeredNormalDrawable(attr);
+        } else {
+            drawableNormal = createGradientNormalDrawable(attr);
+        }
+        return drawableNormal;
+    }
+
+    private Drawable createLayeredNormalDrawable(TypedArray attr) {
         LayerDrawable drawableNormal =
-                (LayerDrawable) getDrawable(R.drawable.rect_normal).mutate();
+                (LayerDrawable) getDrawable(R.drawable.rect_normal_with_bottom).mutate();
 
         GradientDrawable drawableTop =
                 (GradientDrawable) drawableNormal.getDrawable(0).mutate();
@@ -84,6 +94,18 @@ public class FlatButton extends Button {
         int blueNormal = getColor(R.color.blue_normal);
         int colorNormal = attr.getColor(R.styleable.FlatButton_pb_colorNormal, blueNormal);
         drawableBottom.setColor(colorNormal);
+        return drawableNormal;
+    }
+
+    private Drawable createGradientNormalDrawable(TypedArray attr) {
+        GradientDrawable drawableNormal =
+                (GradientDrawable) getDrawable(R.drawable.rect_normal).mutate();
+        drawableNormal.setCornerRadius(getCornerRadius());
+
+        int blueNormal = getColor(R.color.blue_normal);
+        int colorNormal = attr.getColor(R.styleable.FlatButton_pb_colorNormal, blueNormal);
+        drawableNormal.setColor(colorNormal);
+
         return drawableNormal;
     }
 
