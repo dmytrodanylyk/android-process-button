@@ -1,3 +1,6 @@
+## 1.0.4
+* Fixed issue #37 Broken normal text behaviour
+
 ## 1.0.3
 * Added focused and selected states
 
