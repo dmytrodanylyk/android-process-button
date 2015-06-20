@@ -127,6 +127,10 @@ public class FlatButton extends Button {
         return mNormalText;
     }
 
+    public void setNormalText(CharSequence normalText) {
+        mNormalText = normalText;
+    }
+
     /**
      * Set the View's background. Masks the API changes made in Jelly Bean.
      *
