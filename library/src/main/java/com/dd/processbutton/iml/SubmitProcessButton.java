@@ -49,8 +49,8 @@ public class SubmitProcessButton extends ProcessButton {
         float scale = (float) getProgress() / (float) getMaxProgress();
         float indicatorWidth = (float) getMeasuredWidth() * scale;
 
-        getProgressDrawable().setBounds(0, 0, (int) indicatorWidth, getMeasuredHeight());
-        getProgressDrawable().draw(canvas);
+        getProgressLineDrawable().setBounds(0, 0, (int) indicatorWidth, getMeasuredHeight());
+        getProgressLineDrawable().draw(canvas);
     }
 
 }
