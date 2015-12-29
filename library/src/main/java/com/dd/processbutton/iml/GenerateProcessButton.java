@@ -49,8 +49,8 @@ public class GenerateProcessButton extends ProcessButton {
         float scale = (float) getProgress() / (float) getMaxProgress();
         float indicatorHeight = (float) getMeasuredHeight() * scale;
 
-        getProgressDrawable().setBounds(0, 0, getMeasuredWidth(), (int) indicatorHeight);
-        getProgressDrawable().draw(canvas);
+        getProgressLineDrawable().setBounds(0, 0, getMeasuredWidth(), (int) indicatorHeight);
+        getProgressLineDrawable().draw(canvas);
     }
 
 }

@@ -3,6 +3,7 @@ package com.dd.processbutton;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -14,9 +15,10 @@ public abstract class ProcessButton extends FlatButton {
     private int mMaxProgress;
     private int mMinProgress;
 
-    private GradientDrawable mProgressDrawable;
+    private GradientDrawable mProgressLineDrawable;
     private GradientDrawable mCompleteDrawable;
     private GradientDrawable mErrorDrawable;
+    private GradientDrawable mProgressDrawable;
 
     private CharSequence mLoadingText;
     private CharSequence mCompleteText;
@@ -41,8 +43,8 @@ public abstract class ProcessButton extends FlatButton {
         mMinProgress = 0;
         mMaxProgress = 100;
 
-        mProgressDrawable = (GradientDrawable) getDrawable(R.drawable.rect_progress).mutate();
-        mProgressDrawable.setCornerRadius(getCornerRadius());
+        mProgressLineDrawable = (GradientDrawable) getDrawable(R.drawable.rect_progress_line).mutate();
+        mProgressLineDrawable.setCornerRadius(getCornerRadius());
 
         mCompleteDrawable = (GradientDrawable) getDrawable(R.drawable.rect_complete).mutate();
         mCompleteDrawable.setCornerRadius(getCornerRadius());
@@ -67,9 +69,9 @@ public abstract class ProcessButton extends FlatButton {
             mCompleteText = attr.getString(R.styleable.ProcessButton_pb_textComplete);
             mErrorText = attr.getString(R.styleable.ProcessButton_pb_textError);
 
-            int purple = getColor(R.color.purple_progress);
-            int colorProgress = attr.getColor(R.styleable.ProcessButton_pb_colorProgress, purple);
-            mProgressDrawable.setColor(colorProgress);
+            int purple = getColor(R.color.purple_progress_line);
+            int colorProgressLine = attr.getColor(R.styleable.ProcessButton_pb_colorProgressLine, purple);
+            mProgressLineDrawable.setColor(colorProgressLine);
 
             int green = getColor(R.color.green_complete);
             int colorComplete = attr.getColor(R.styleable.ProcessButton_pb_colorComplete, green);
@@ -78,6 +80,12 @@ public abstract class ProcessButton extends FlatButton {
             int red = getColor(R.color.red_error);
             int colorError = attr.getColor(R.styleable.ProcessButton_pb_colorError, red);
             mErrorDrawable.setColor(colorError);
+
+            if (attr.hasValue(R.styleable.ProcessButton_pb_colorProgress)) {
+                mProgressDrawable = (GradientDrawable) getDrawable(R.drawable.rect_progress).mutate();
+                mProgressDrawable.setCornerRadius(getCornerRadius());
+                mProgressDrawable.setColor(attr.getColor(R.styleable.ProcessButton_pb_colorProgress, getColor(R.color.blue_normal)));
+            }
 
         } finally {
             attr.recycle();
@@ -111,7 +119,7 @@ public abstract class ProcessButton extends FlatButton {
         if(getLoadingText() != null) {
             setText(getLoadingText());
         }
-        setBackgroundCompat(getNormalDrawable());
+        setBackgroundCompat(getProgressDrawable());
     }
 
     protected void onCompleteState() {
@@ -152,12 +160,16 @@ public abstract class ProcessButton extends FlatButton {
         return mMinProgress;
     }
 
-    public GradientDrawable getProgressDrawable() {
-        return mProgressDrawable;
+    public GradientDrawable getProgressLineDrawable() {
+        return mProgressLineDrawable;
     }
 
     public GradientDrawable getCompleteDrawable() {
         return mCompleteDrawable;
+    }
+
+    public Drawable getProgressDrawable() {
+        return mProgressDrawable == null ? getNormalDrawable() : mProgressDrawable;
     }
 
     public CharSequence getLoadingText() {
@@ -168,12 +180,16 @@ public abstract class ProcessButton extends FlatButton {
         return mCompleteText;
     }
 
-    public void setProgressDrawable(GradientDrawable progressDrawable) {
-        mProgressDrawable = progressDrawable;
+    public void setProgressLineDrawable(GradientDrawable progressLineDrawable) {
+        mProgressLineDrawable = progressLineDrawable;
     }
 
     public void setCompleteDrawable(GradientDrawable completeDrawable) {
         mCompleteDrawable = completeDrawable;
+    }
+
+    public void setProgressDrawable(GradientDrawable progressDrawable) {
+        mProgressDrawable = progressDrawable;
     }
 
     public void setNormalText(CharSequence normalText) {

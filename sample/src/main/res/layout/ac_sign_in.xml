@@ -38,7 +38,8 @@
             custom:pb_colorComplete="@color/green_complete"
             custom:pb_colorNormal="@color/blue_normal"
             custom:pb_colorPressed="@color/blue_pressed"
-            custom:pb_colorProgress="@color/purple_progress"
+            custom:pb_colorProgressLine="@color/purple_progress_line"
+            custom:pb_colorProgress="@color/orange_progress"
             custom:pb_textComplete="@string/Success"
             custom:pb_textProgress="@string/Loading" />
 

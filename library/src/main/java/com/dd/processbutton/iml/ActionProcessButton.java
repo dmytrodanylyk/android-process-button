@@ -94,8 +94,8 @@ public class ActionProcessButton extends ProcessButton {
 
     @Override
     public void drawProgress(Canvas canvas) {
-        if(getBackground() != getNormalDrawable()) {
-            setBackgroundDrawable(getNormalDrawable());
+        if(getBackground() != getProgressDrawable()) {
+            setBackgroundDrawable(getProgressDrawable());
         }
 
         switch (mMode) {
@@ -122,8 +122,8 @@ public class ActionProcessButton extends ProcessButton {
 
         double indicatorHeightPercent = 0.05; // 5%
         int bottom = (int) (getMeasuredHeight() - getMeasuredHeight() * indicatorHeightPercent);
-        getProgressDrawable().setBounds(0, bottom, (int) indicatorWidth, getMeasuredHeight());
-        getProgressDrawable().draw(canvas);
+        getProgressLineDrawable().setBounds(0, bottom, (int) indicatorWidth, getMeasuredHeight());
+        getProgressLineDrawable().draw(canvas);
     }
 
     private void drawEndlessProgress(Canvas canvas) {

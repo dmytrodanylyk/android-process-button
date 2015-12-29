@@ -3,8 +3,9 @@
     <color name="blue_pressed">#ff0099cc</color>
     <color name="blue_normal">#ff33b5e5</color>
     <color name="green_complete">#ff99cc00</color>
-    <color name="purple_progress">#ffaa66cc</color>
+    <color name="purple_progress_line">#ffaa66cc</color>
     <color name="red_error">#ffff4444</color>
+    <color name="orange_progress">#ffb74d</color>
 
     <color name="holo_blue_bright">#ff00ddff</color>
     <color name="holo_green_light">#ff99cc00</color>
