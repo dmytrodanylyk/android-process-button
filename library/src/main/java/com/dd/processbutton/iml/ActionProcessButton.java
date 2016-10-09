@@ -93,6 +93,20 @@ public class ActionProcessButton extends ProcessButton {
     }
 
     @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        if (mProgressBar != null) {
+            setupProgressBarBounds();
+        }
+    }
+
+    private void setupProgressBarBounds() {
+        double indicatorHeight = getDimension(R.dimen.layer_padding);
+        int bottom = (int) (getMeasuredHeight() - indicatorHeight);
+        mProgressBar.setBounds(0, bottom, getMeasuredWidth(), getMeasuredHeight());
+    }
+
+    @Override
     public void drawProgress(Canvas canvas) {
         if(getBackground() != getNormalDrawable()) {
             setBackgroundDrawable(getNormalDrawable());
