@@ -28,7 +28,7 @@ public abstract class ProcessButton extends FlatButton {
     }
 
     public ProcessButton(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        super(context, attrs, R.attr.ProcessButtonStyle);
         init(context, attrs);
     }
 

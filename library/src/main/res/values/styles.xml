@@ -1,5 +1,11 @@
 <resources>
-    <declare-styleable name="ProcessButton">
+    <declare-styleable name="FlatButton" parent="@android:style/Widget.Button">
+        <attr name="pb_colorPressed" format="color" />
+        <attr name="pb_colorNormal" format="color" />
+        <attr name="pb_cornerRadius" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="ProcessButton" parent="FlatButton">
         <attr name="pb_textProgress" format="string" />
         <attr name="pb_textComplete" format="string" />
         <attr name="pb_textError" format="string" />
@@ -7,10 +13,23 @@
         <attr name="pb_colorComplete" format="color" />
         <attr name="pb_colorError" format="color" />
     </declare-styleable>
-
-    <declare-styleable name="FlatButton">
-        <attr name="pb_colorPressed" format="color" />
-        <attr name="pb_colorNormal" format="color" />
-        <attr name="pb_cornerRadius" format="dimension" />
+    
+    <declare-styleable name="ActionProcessButtonTheme">
+        <attr name="ProcessButtonStyle" format="reference" />
     </declare-styleable>
+
+    <!-- Working toward transition for default style -->
+    <!--<style name="ProcessButtonDefaultStyle">
+        <item name="pb_colorNormal">@color/blue_normal</item>
+        <item name="pb_colorPressed">@color/blue_pressed</item>
+        <item name="pb_cornerRadius">2dp</item>
+
+        <item name="pb_colorProgress">@color/purple_progress</item>
+        <item name="pb_colorComplete">@color/green_complete</item>
+        <item name="pb_colorError">@color/red_error</item>
+
+        <item name="pb_textProgress"></item>
+        <item name="pb_textComplete"></item>
+        <item name="pb_textError"></item>
+    </style>-->
 </resources>
