@@ -49,7 +49,8 @@ public class FlatButton extends Button {
 
         try {
 
-            float defValue = getDimension(R.dimen.corner_radius);
+
+            float defValue = this.isInEditMode() ? 5 : getDimension(R.dimen.corner_radius);
             cornerRadius = attr.getDimension(R.styleable.FlatButton_pb_cornerRadius, defValue);
 
             mNormalDrawable.addState(new int[]{android.R.attr.state_pressed},
