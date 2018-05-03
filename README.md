@@ -17,7 +17,7 @@ The lib is available on Maven Central, you can find it with [Gradle, please]
 
 ```
 dependencies {
-    compile 'com.github.dmytrodanylyk.android-process-button:library:1.0.4'
+    implementation 'com.github.dmytrodanylyk.android-process-button:library:1.0.4'
 }
 ```
 
