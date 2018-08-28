@@ -15,7 +15,7 @@ repositories {
 
 android {
     compileSdkVersion 25
-    buildToolsVersion '25.0.0'
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         minSdkVersion 14
@@ -26,7 +26,7 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:25.3.1'
+    api 'com.android.support:support-v4:25.3.1'
 }
 
 // Used to push in maven
